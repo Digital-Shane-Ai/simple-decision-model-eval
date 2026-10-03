@@ -1,0 +1,86 @@
+[
+  {
+    "id": "refund-headphones",
+    "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+    "expected_answers": {
+      "request_type": "refund"
+    }
+  },
+  {
+    "id": "replacement-only",
+    "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+    "expected_answers": {
+      "request_type": "replacement"
+    }
+  },
+  {
+    "id": "before-purchase",
+    "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+    "expected_answers": {
+      "request_type": "other"
+    }
+  },
+  {
+    "id": "money-back",
+    "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+    "expected_answers": {
+      "request_type": "refund"
+    }
+  },
+  {
+    "id": "refund-charge",
+    "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+    "expected_answers": {
+      "request_type": "refund"
+    }
+  },
+  {
+    "id": "keep-product",
+    "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+    "expected_answers": {
+      "request_type": "other"
+    }
+  },
+  {
+    "id": "refund-polite",
+    "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+    "expected_answers": {
+      "request_type": "refund"
+    }
+  },
+  {
+    "id": "repair-only",
+    "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+    "expected_answers": {
+      "request_type": "repair"
+    }
+  },
+  {
+    "id": "shipping",
+    "message": "My order hasn't arrived. Can you send me the tracking number?",
+    "expected_answers": {
+      "request_type": "order_status"
+    }
+  },
+  {
+    "id": "refund-indirect",
+    "message": "These speakers don't work. I want my money back.",
+    "expected_answers": {
+      "request_type": "refund"
+    }
+  },
+  {
+    "id": "cancel-refund",
+    "message": "Please cancel my undelivered desk order and refund the payment.",
+    "expected_answers": {
+      "request_type": "refund"
+    }
+  },
+  {
+    "id": "refund-history",
+    "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+    "expected_answers": {
+      "request_type": "order_status"
+    }
+  }
+]

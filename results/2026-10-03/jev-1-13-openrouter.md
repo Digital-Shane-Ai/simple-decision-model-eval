@@ -1,0 +1,98 @@
+# Jev 1.13 (OpenRouter)
+
+[All results and exact inputs](README.md) · [Project overview](../../README.md) · [Original JSON](comparison.json)
+
+Captured run: `2026-10-03T10:37:16.523083+00:00`. Question: `request_type`.
+
+All 12 answers matched the expected labels in this run.
+
+## Summary
+
+| Metric | Value |
+| --- | --- |
+| Answer pairs | 12 |
+| Answered | 12 |
+| Labeled | 12 |
+| Correct | 12 |
+| Incorrect | 0 |
+| Execution errors | 0 |
+| Accuracy | 12/12 (100.0%) |
+| Coverage | 12/12 (100%) |
+| Choice Brier | 0.000000 |
+| Mean API round trip (ms) | 198.990 |
+| Load time (s) | Not reported |
+| Total reported API cost (USD) | 0.000222138 |
+
+## Answers
+
+Expected labels come from the saved run. All rows have execution status `ok`; an incorrect classification is not an execution error.
+
+| Case | Expected | Selected | Correct | Selected probability | Choice Brier | API round trip (ms) |
+| --- | --- | --- | --- | --- | --- | --- |
+| `refund-headphones` | refund | refund | Yes | 1.000000 | 0.000000 | 398.754 |
+| `replacement-only` | replacement | replacement | Yes | 1.000000 | 0.000000 | 159.508 |
+| `before-purchase` | other | other | Yes | 1.000000 | 0.000000 | 161.122 |
+| `money-back` | refund | refund | Yes | 1.000000 | 0.000000 | 170.316 |
+| `refund-charge` | refund | refund | Yes | 1.000000 | 0.000000 | 154.244 |
+| `keep-product` | other | other | Yes | 1.000000 | 0.000000 | 196.488 |
+| `refund-polite` | refund | refund | Yes | 1.000000 | 0.000000 | 188.994 |
+| `repair-only` | repair | repair | Yes | 1.000000 | 0.000000 | 198.121 |
+| `shipping` | order_status | order_status | Yes | 1.000000 | 0.000000 | 175.752 |
+| `refund-indirect` | refund | refund | Yes | 1.000000 | 0.000000 | 166.965 |
+| `cancel-refund` | refund | refund | Yes | 1.000000 | 0.000000 | 230.104 |
+| `refund-history` | order_status | order_status | Yes | 1.000000 | 0.000000 | 187.516 |
+
+## Probabilities
+
+| Case | refund | replacement | repair | order_status | other |
+| --- | --- | --- | --- | --- | --- |
+| `refund-headphones` | 1.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| `replacement-only` | 0.000000 | 1.000000 | 0.000000 | 0.000000 | 0.000000 |
+| `before-purchase` | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 1.000000 |
+| `money-back` | 1.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| `refund-charge` | 1.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| `keep-product` | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 1.000000 |
+| `refund-polite` | 1.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| `repair-only` | 0.000000 | 0.000000 | 1.000000 | 0.000000 | 0.000000 |
+| `shipping` | 0.000000 | 0.000000 | 0.000000 | 1.000000 | 0.000000 |
+| `refund-indirect` | 1.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| `cancel-refund` | 1.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| `refund-history` | 0.000000 | 0.000000 | 0.000000 | 1.000000 | 0.000000 |
+
+## Native confidence fields
+
+These are the fields returned by the model, not a common confidence scale. **Not reported** is distinct from zero.
+
+| Case | Returned confidence | Returned answer confidence |
+| --- | --- | --- |
+| `refund-headphones` | 1.000000 | Not reported |
+| `replacement-only` | 1.000000 | Not reported |
+| `before-purchase` | 1.000000 | Not reported |
+| `money-back` | 1.000000 | Not reported |
+| `refund-charge` | 1.000000 | Not reported |
+| `keep-product` | 1.000000 | Not reported |
+| `refund-polite` | 1.000000 | Not reported |
+| `repair-only` | 1.000000 | Not reported |
+| `shipping` | 1.000000 | Not reported |
+| `refund-indirect` | 1.000000 | Not reported |
+| `cancel-refund` | 1.000000 | Not reported |
+| `refund-history` | 1.000000 | Not reported |
+
+## Model and runtime
+
+| Field | Recorded value |
+| --- | --- |
+| Model key | `jev` |
+| Model identifier | `typesafe/jev-1.13` |
+| Execution | hosted |
+| Reported device | `OpenRouter API` |
+| Timing scope | API round trip including network and provider queue |
+| Checkpoint revision | Not reported |
+| Backend | openrouter |
+| Runtime: backend | `OpenRouter Decisions API` |
+| Runtime: endpoint | `https://openrouter.ai/api/alpha/decisions` |
+| Returned served model | `typesafe/jev-1.13-20260917` |
+
+API timing includes network and provider queueing. The export does not report a hosted checkpoint revision or load time.
+
+This is one small initial screen. Read the [scoring and limitations](README.md#scoring-and-limits) before using it to choose a model for a larger evaluation.

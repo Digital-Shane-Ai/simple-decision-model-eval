@@ -1,0 +1,81 @@
+{
+  "created_at": "2026-09-29T12:34:52.262563+00:00",
+  "question": "Does the user request a refund or ask for their money back for a product?",
+  "threshold": 0.5,
+  "cases": [
+    {
+      "id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true
+    }
+  ],
+  "models": {
+    "mojev": {
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb"
+    }
+  },
+  "summary": [
+    {
+      "model": "MoJev",
+      "cases": 1,
+      "answered": 1,
+      "errors": 0,
+      "labelled": 1,
+      "correct": 0,
+      "accuracy_on_answered": 0.0,
+      "correct_over_labelled": 0.0,
+      "coverage": 1.0,
+      "brier_score": 0.5869829876981534,
+      "mean_inference_seconds": 0.7249935839790851,
+      "load_seconds": 2.4833295419812202
+    }
+  ],
+  "results": [
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.4833295419812202,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-6t177a1m.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.2338518500328064
+          }
+        },
+        "usage": {
+          "input_tokens": 64,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.7249935839790851,
+      "probability_yes": 0.2338518500328064,
+      "probability_no": 0.7661481499671936,
+      "wants_refund": false,
+      "selected_probability": 0.7661481499671936,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    }
+  ]
+}

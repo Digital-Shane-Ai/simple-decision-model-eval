@@ -1,0 +1,10 @@
+{
+  "damaged": {
+    "type": "noul",
+    "instructions": "Is the item damaged?"
+  },
+  "replacement": {
+    "type": "noul",
+    "instructions": "Does the customer ask for a replacement?"
+  }
+}

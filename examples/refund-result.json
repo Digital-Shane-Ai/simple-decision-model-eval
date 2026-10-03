@@ -1,0 +1,36 @@
+{
+  "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+  "wants_refund": true,
+  "decision_threshold": 0.5,
+  "probability_yes": 0.9594,
+  "probability_no": 0.0406,
+  "confidence": 0.9594,
+  "answer_confidence": 0.9594,
+  "elapsed_seconds_including_load": 18.341,
+  "device": "cpu",
+  "raw_response": {
+    "model": "laya-rl-agent",
+    "answers": {
+      "refund_requested": {
+        "type": "noul",
+        "noul": 0.9594,
+        "confidence": 0.9594,
+        "answer_confidence": 0.9594,
+        "action": {
+          "act_probability": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 75,
+      "output_tokens": 0
+    },
+    "routing": {
+      "model": "english",
+      "repo": "convaiinnovations/laya",
+      "reason": "explicit model='english'",
+      "detection": null,
+      "workflow": null
+    }
+  }
+}

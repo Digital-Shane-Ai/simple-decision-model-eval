@@ -1,0 +1,18 @@
+[
+  {
+    "id": "arrival",
+    "message": "The screen cracked on arrival. Please send a replacement.",
+    "expected_answers": {
+      "damaged": true,
+      "replacement": true
+    }
+  },
+  {
+    "id": "question",
+    "message": "The laptop works well. Does it support an external monitor?",
+    "expected_answers": {
+      "damaged": false,
+      "replacement": false
+    }
+  }
+]

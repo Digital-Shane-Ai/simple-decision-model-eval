@@ -1,0 +1,3260 @@
+{
+  "created_at": "2026-09-29T15:28:54.626703+00:00",
+  "question": "Does the user request a refund or ask for their money back for a product?",
+  "threshold": 0.5,
+  "cases": [
+    {
+      "id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true
+    },
+    {
+      "id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false
+    },
+    {
+      "id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false
+    },
+    {
+      "id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true
+    },
+    {
+      "id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true
+    },
+    {
+      "id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false
+    },
+    {
+      "id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true
+    },
+    {
+      "id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false
+    },
+    {
+      "id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false
+    },
+    {
+      "id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true
+    },
+    {
+      "id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true
+    },
+    {
+      "id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false
+    }
+  ],
+  "models": {
+    "verqen": {
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence"
+    },
+    "fragment2": {
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime"
+    },
+    "circuit": {
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled"
+    },
+    "circuit8b": {
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled"
+    },
+    "openthai": {
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head"
+    }
+  },
+  "summary": [
+    {
+      "model": "VerQen",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 10,
+      "accuracy_on_answered": 0.8333333333333334,
+      "correct_over_labelled": 0.8333333333333334,
+      "coverage": 1.0,
+      "brier_score": 0.15309480640266668,
+      "mean_inference_seconds": 0.12696281971875578,
+      "load_seconds": 12.130685166921467
+    },
+    {
+      "model": "Fragment-2",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 6,
+      "accuracy_on_answered": 0.5,
+      "correct_over_labelled": 0.5,
+      "coverage": 1.0,
+      "brier_score": 0.488037625,
+      "mean_inference_seconds": 0.017873628491846223,
+      "load_seconds": 0.5153744590934366
+    },
+    {
+      "model": "Circuit-1.7B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 11,
+      "accuracy_on_answered": 0.9166666666666666,
+      "correct_over_labelled": 0.9166666666666666,
+      "coverage": 1.0,
+      "brier_score": 0.10445428037185576,
+      "mean_inference_seconds": 0.13041202091456702,
+      "load_seconds": 2.8155866670422256
+    },
+    {
+      "model": "Circuit-8B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.02587764281670213,
+      "mean_inference_seconds": 0.1038171667411613,
+      "load_seconds": 3.3544836670625955
+    },
+    {
+      "model": "OpenThai-SystemOne",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.0151851386891907,
+      "mean_inference_seconds": 0.089448687445838,
+      "load_seconds": 1.974372958065942
+    }
+  ],
+  "results": [
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.845625,
+            "confidence": 0.7254
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "yes",
+            "probabilities": {
+              "no": 0.154375,
+              "yes": 0.845625
+            },
+            "p_correct": 0.7254,
+            "margin": 0.6913,
+            "value": true,
+            "p_true": 0.845625,
+            "prediction_set": [
+              "yes"
+            ],
+            "should_escalate": false,
+            "confidence": 0.7254
+          }
+        }
+      },
+      "inference_seconds": 1.338428207905963,
+      "probability_yes": 0.845625,
+      "probability_no": 0.15437500000000004,
+      "wants_refund": true,
+      "selected_probability": 0.845625,
+      "returned_confidence": 0.7254,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.290022,
+            "confidence": 0.5342
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.709978,
+              "yes": 0.290022
+            },
+            "p_correct": 0.5342,
+            "margin": 0.42,
+            "value": false,
+            "p_true": 0.290022,
+            "prediction_set": [
+              "no",
+              "yes"
+            ],
+            "should_escalate": true,
+            "confidence": 0.5342
+          }
+        }
+      },
+      "inference_seconds": 0.04451816692017019,
+      "probability_yes": 0.290022,
+      "probability_no": 0.709978,
+      "wants_refund": false,
+      "selected_probability": 0.709978,
+      "returned_confidence": 0.5342,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.099225,
+            "confidence": 0.753
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.900775,
+              "yes": 0.099225
+            },
+            "p_correct": 0.753,
+            "margin": 0.8015,
+            "value": false,
+            "p_true": 0.099225,
+            "prediction_set": [
+              "no"
+            ],
+            "should_escalate": false,
+            "confidence": 0.753
+          }
+        }
+      },
+      "inference_seconds": 0.013796041952446103,
+      "probability_yes": 0.099225,
+      "probability_no": 0.900775,
+      "wants_refund": false,
+      "selected_probability": 0.900775,
+      "returned_confidence": 0.753,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.880113,
+            "confidence": 0.7075
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "yes",
+            "probabilities": {
+              "no": 0.119887,
+              "yes": 0.880113
+            },
+            "p_correct": 0.7075,
+            "margin": 0.7602,
+            "value": true,
+            "p_true": 0.880113,
+            "prediction_set": [
+              "yes"
+            ],
+            "should_escalate": false,
+            "confidence": 0.7075
+          }
+        }
+      },
+      "inference_seconds": 0.014215667033568025,
+      "probability_yes": 0.880113,
+      "probability_no": 0.11988699999999997,
+      "wants_refund": true,
+      "selected_probability": 0.880113,
+      "returned_confidence": 0.7075,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.167191,
+            "confidence": 0.6732
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.832809,
+              "yes": 0.167191
+            },
+            "p_correct": 0.6732,
+            "margin": 0.6656,
+            "value": false,
+            "p_true": 0.167191,
+            "prediction_set": [
+              "no",
+              "yes"
+            ],
+            "should_escalate": true,
+            "confidence": 0.6732
+          }
+        }
+      },
+      "inference_seconds": 0.014348583994433284,
+      "probability_yes": 0.167191,
+      "probability_no": 0.832809,
+      "wants_refund": false,
+      "selected_probability": 0.832809,
+      "returned_confidence": 0.6732,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.093085,
+            "confidence": 0.7519
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.906915,
+              "yes": 0.093085
+            },
+            "p_correct": 0.7519,
+            "margin": 0.8138,
+            "value": false,
+            "p_true": 0.093085,
+            "prediction_set": [
+              "no"
+            ],
+            "should_escalate": false,
+            "confidence": 0.7519
+          }
+        }
+      },
+      "inference_seconds": 0.014936666935682297,
+      "probability_yes": 0.093085,
+      "probability_no": 0.906915,
+      "wants_refund": false,
+      "selected_probability": 0.906915,
+      "returned_confidence": 0.7519,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.602366,
+            "confidence": 0.2953
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "yes",
+            "probabilities": {
+              "no": 0.397634,
+              "yes": 0.602366
+            },
+            "p_correct": 0.2953,
+            "margin": 0.2047,
+            "value": true,
+            "p_true": 0.602366,
+            "prediction_set": [
+              "no",
+              "yes"
+            ],
+            "should_escalate": true,
+            "confidence": 0.2953
+          }
+        }
+      },
+      "inference_seconds": 0.013715292094275355,
+      "probability_yes": 0.602366,
+      "probability_no": 0.39763400000000004,
+      "wants_refund": true,
+      "selected_probability": 0.602366,
+      "returned_confidence": 0.2953,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.145785,
+            "confidence": 0.6909
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.854215,
+              "yes": 0.145785
+            },
+            "p_correct": 0.6909,
+            "margin": 0.7084,
+            "value": false,
+            "p_true": 0.145785,
+            "prediction_set": [
+              "no"
+            ],
+            "should_escalate": true,
+            "confidence": 0.6909
+          }
+        }
+      },
+      "inference_seconds": 0.013942542020231485,
+      "probability_yes": 0.145785,
+      "probability_no": 0.854215,
+      "wants_refund": false,
+      "selected_probability": 0.854215,
+      "returned_confidence": 0.6909,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.267364,
+            "confidence": 0.645
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.732636,
+              "yes": 0.267364
+            },
+            "p_correct": 0.645,
+            "margin": 0.4653,
+            "value": false,
+            "p_true": 0.267364,
+            "prediction_set": [
+              "no",
+              "yes"
+            ],
+            "should_escalate": true,
+            "confidence": 0.645
+          }
+        }
+      },
+      "inference_seconds": 0.0140946249011904,
+      "probability_yes": 0.267364,
+      "probability_no": 0.7326360000000001,
+      "wants_refund": false,
+      "selected_probability": 0.7326360000000001,
+      "returned_confidence": 0.645,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.921645,
+            "confidence": 0.7568
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "yes",
+            "probabilities": {
+              "no": 0.078355,
+              "yes": 0.921645
+            },
+            "p_correct": 0.7568,
+            "margin": 0.8433,
+            "value": true,
+            "p_true": 0.921645,
+            "prediction_set": [
+              "yes"
+            ],
+            "should_escalate": false,
+            "confidence": 0.7568
+          }
+        }
+      },
+      "inference_seconds": 0.013683292083442211,
+      "probability_yes": 0.921645,
+      "probability_no": 0.07835499999999995,
+      "wants_refund": true,
+      "selected_probability": 0.921645,
+      "returned_confidence": 0.7568,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.180465,
+            "confidence": 0.6895
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.819535,
+              "yes": 0.180465
+            },
+            "p_correct": 0.6895,
+            "margin": 0.6391,
+            "value": false,
+            "p_true": 0.180465,
+            "prediction_set": [
+              "no",
+              "yes"
+            ],
+            "should_escalate": true,
+            "confidence": 0.6895
+          }
+        }
+      },
+      "inference_seconds": 0.013227958930656314,
+      "probability_yes": 0.180465,
+      "probability_no": 0.819535,
+      "wants_refund": false,
+      "selected_probability": 0.819535,
+      "returned_confidence": 0.6895,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "verqen",
+      "name": "VerQen",
+      "repo": "zorqelis-ai/VerQen",
+      "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+      "environment": ".venv-modern",
+      "source": "https://github.com/ZorQelis-AI/verqen",
+      "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+      "note": "232M from-scratch encoder; native probability and selected-answer confidence",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 12.130685166921467,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/verqen-y2mxq29l.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.272236,
+            "confidence": 0.5785
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "type": "noul",
+            "selected": "no",
+            "probabilities": {
+              "no": 0.727764,
+              "yes": 0.272236
+            },
+            "p_correct": 0.5785,
+            "margin": 0.4555,
+            "value": false,
+            "p_true": 0.272236,
+            "prediction_set": [
+              "no",
+              "yes"
+            ],
+            "should_escalate": true,
+            "confidence": 0.5785
+          }
+        }
+      },
+      "inference_seconds": 0.014646791853010654,
+      "probability_yes": 0.272236,
+      "probability_no": 0.7277640000000001,
+      "wants_refund": false,
+      "selected_probability": 0.7277640000000001,
+      "returned_confidence": 0.5785,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9904,
+              "true": 0.0096
+            },
+            "noul": 0.0096
+          }
+        },
+        "usage": {
+          "latency_ms": 142
+        }
+      },
+      "inference_seconds": 0.14171904209069908,
+      "probability_yes": 0.0096,
+      "probability_no": 0.9904,
+      "wants_refund": false,
+      "selected_probability": 0.9904,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9934,
+              "true": 0.0066
+            },
+            "noul": 0.0066
+          }
+        },
+        "usage": {
+          "latency_ms": 8
+        }
+      },
+      "inference_seconds": 0.00765695795416832,
+      "probability_yes": 0.0066,
+      "probability_no": 0.9934,
+      "wants_refund": false,
+      "selected_probability": 0.9934,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9527,
+              "true": 0.0473
+            },
+            "noul": 0.0473
+          }
+        },
+        "usage": {
+          "latency_ms": 9
+        }
+      },
+      "inference_seconds": 0.00936741684563458,
+      "probability_yes": 0.0473,
+      "probability_no": 0.9527,
+      "wants_refund": false,
+      "selected_probability": 0.9527,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.982,
+              "true": 0.018
+            },
+            "noul": 0.018
+          }
+        },
+        "usage": {
+          "latency_ms": 7
+        }
+      },
+      "inference_seconds": 0.0065427920781075954,
+      "probability_yes": 0.018,
+      "probability_no": 0.982,
+      "wants_refund": false,
+      "selected_probability": 0.982,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9827,
+              "true": 0.0173
+            },
+            "noul": 0.0173
+          }
+        },
+        "usage": {
+          "latency_ms": 4
+        }
+      },
+      "inference_seconds": 0.0039735420141369104,
+      "probability_yes": 0.0173,
+      "probability_no": 0.9827,
+      "wants_refund": false,
+      "selected_probability": 0.9827,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9874,
+              "true": 0.0126
+            },
+            "noul": 0.0126
+          }
+        },
+        "usage": {
+          "latency_ms": 6
+        }
+      },
+      "inference_seconds": 0.006146665895357728,
+      "probability_yes": 0.0126,
+      "probability_no": 0.9874,
+      "wants_refund": false,
+      "selected_probability": 0.9874,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9918,
+              "true": 0.0082
+            },
+            "noul": 0.0082
+          }
+        },
+        "usage": {
+          "latency_ms": 4
+        }
+      },
+      "inference_seconds": 0.003782999934628606,
+      "probability_yes": 0.0082,
+      "probability_no": 0.9918,
+      "wants_refund": false,
+      "selected_probability": 0.9918,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9861,
+              "true": 0.0139
+            },
+            "noul": 0.0139
+          }
+        },
+        "usage": {
+          "latency_ms": 6
+        }
+      },
+      "inference_seconds": 0.005972584011033177,
+      "probability_yes": 0.0139,
+      "probability_no": 0.9861,
+      "wants_refund": false,
+      "selected_probability": 0.9861,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.959,
+              "true": 0.041
+            },
+            "noul": 0.041
+          }
+        },
+        "usage": {
+          "latency_ms": 6
+        }
+      },
+      "inference_seconds": 0.006204541074112058,
+      "probability_yes": 0.041,
+      "probability_no": 0.959,
+      "wants_refund": false,
+      "selected_probability": 0.959,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9837,
+              "true": 0.0163
+            },
+            "noul": 0.0163
+          }
+        },
+        "usage": {
+          "latency_ms": 7
+        }
+      },
+      "inference_seconds": 0.006564541952684522,
+      "probability_yes": 0.0163,
+      "probability_no": 0.9837,
+      "wants_refund": false,
+      "selected_probability": 0.9837,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9939,
+              "true": 0.0061
+            },
+            "noul": 0.0061
+          }
+        },
+        "usage": {
+          "latency_ms": 9
+        }
+      },
+      "inference_seconds": 0.008638833183795214,
+      "probability_yes": 0.0061,
+      "probability_no": 0.9939,
+      "wants_refund": false,
+      "selected_probability": 0.9939,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "fragment2",
+      "name": "Fragment-2",
+      "repo": "FrameXlabs/fragment-2",
+      "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+      "environment": ".venv-modern",
+      "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps:0",
+      "load_seconds": 0.5153744590934366,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/fragment2-osm3ah0_.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "fragment-2",
+        "version": "3.0.2",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "question": "Does the user request a refund or ask for their money back for a product?",
+            "probabilities": {
+              "false": 0.9547,
+              "true": 0.0453
+            },
+            "noul": 0.0453
+          }
+        },
+        "usage": {
+          "latency_ms": 8
+        }
+      },
+      "inference_seconds": 0.007913624867796898,
+      "probability_yes": 0.0453,
+      "probability_no": 0.9547,
+      "wants_refund": false,
+      "selected_probability": 0.9547,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.8212095114319431
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.8212095114319431,
+              0.17879048856805702
+            ],
+            "logits": [
+              3.0517992973327637,
+              0.3838129937648773
+            ],
+            "input_tokens": 65
+          }
+        }
+      },
+      "inference_seconds": 0.721051582833752,
+      "probability_yes": 0.8212095114319431,
+      "probability_no": 0.1787904885680569,
+      "wants_refund": true,
+      "selected_probability": 0.8212095114319431,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.05385011306373214
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.05385011306373214,
+              0.9461498869362678
+            ],
+            "logits": [
+              -2.165695905685425,
+              2.8501479625701904
+            ],
+            "input_tokens": 49
+          }
+        }
+      },
+      "inference_seconds": 0.09076812490820885,
+      "probability_yes": 0.05385011306373214,
+      "probability_no": 0.9461498869362679,
+      "wants_refund": false,
+      "selected_probability": 0.9461498869362679,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.2512499243313463
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.2512499243313463,
+              0.7487500756686537
+            ],
+            "logits": [
+              -10.371147155761719,
+              -8.460222244262695
+            ],
+            "input_tokens": 47
+          }
+        }
+      },
+      "inference_seconds": 0.1110232500359416,
+      "probability_yes": 0.2512499243313463,
+      "probability_no": 0.7487500756686537,
+      "wants_refund": false,
+      "selected_probability": 0.7487500756686537,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.8031890444330126
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.8031890444330126,
+              0.19681095556698738
+            ],
+            "logits": [
+              3.3358287811279297,
+              0.8747224807739258
+            ],
+            "input_tokens": 51
+          }
+        }
+      },
+      "inference_seconds": 0.0370971669908613,
+      "probability_yes": 0.8031890444330126,
+      "probability_no": 0.19681095556698736,
+      "wants_refund": true,
+      "selected_probability": 0.8031890444330126,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.6409264723291103
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.6409264723291103,
+              0.35907352767088974
+            ],
+            "logits": [
+              1.7477552890777588,
+              0.7338270545005798
+            ],
+            "input_tokens": 50
+          }
+        }
+      },
+      "inference_seconds": 0.038145792204886675,
+      "probability_yes": 0.6409264723291103,
+      "probability_no": 0.35907352767088974,
+      "wants_refund": true,
+      "selected_probability": 0.6409264723291103,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.41086307152557894
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.41086307152557894,
+              0.589136928474421
+            ],
+            "logits": [
+              1.0432782173156738,
+              1.6739758253097534
+            ],
+            "input_tokens": 56
+          }
+        }
+      },
+      "inference_seconds": 0.06629770784638822,
+      "probability_yes": 0.41086307152557894,
+      "probability_no": 0.589136928474421,
+      "wants_refund": false,
+      "selected_probability": 0.589136928474421,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.8086023725809872
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.8086023725809872,
+              0.19139762741901278
+            ],
+            "logits": [
+              3.8856897354125977,
+              1.3640198707580566
+            ],
+            "input_tokens": 48
+          }
+        }
+      },
+      "inference_seconds": 0.31746487505733967,
+      "probability_yes": 0.8086023725809872,
+      "probability_no": 0.19139762741901278,
+      "wants_refund": true,
+      "selected_probability": 0.8086023725809872,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.2871099324574229
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.2871099324574229,
+              0.7128900675425772
+            ],
+            "logits": [
+              -1.1931414604187012,
+              0.3984171152114868
+            ],
+            "input_tokens": 54
+          }
+        }
+      },
+      "inference_seconds": 0.03752600005827844,
+      "probability_yes": 0.2871099324574229,
+      "probability_no": 0.7128900675425771,
+      "wants_refund": false,
+      "selected_probability": 0.7128900675425771,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.16494896916862128
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.16494896916862128,
+              0.8350510308313788
+            ],
+            "logits": [
+              -10.201616287231445,
+              -7.363367080688477
+            ],
+            "input_tokens": 46
+          }
+        }
+      },
+      "inference_seconds": 0.03719633398577571,
+      "probability_yes": 0.16494896916862128,
+      "probability_no": 0.8350510308313788,
+      "wants_refund": false,
+      "selected_probability": 0.8350510308313788,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.809596912199853
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.809596912199853,
+              0.19040308780014703
+            ],
+            "logits": [
+              4.196073532104492,
+              1.6631355285644531
+            ],
+            "input_tokens": 44
+          }
+        }
+      },
+      "inference_seconds": 0.03721295786090195,
+      "probability_yes": 0.809596912199853,
+      "probability_no": 0.19040308780014703,
+      "wants_refund": true,
+      "selected_probability": 0.809596912199853,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.714148418414363
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.714148418414363,
+              0.28585158158563695
+            ],
+            "logits": [
+              3.462531328201294,
+              1.8601996898651123
+            ],
+            "input_tokens": 45
+          }
+        }
+      },
+      "inference_seconds": 0.037811791989952326,
+      "probability_yes": 0.714148418414363,
+      "probability_no": 0.28585158158563695,
+      "wants_refund": true,
+      "selected_probability": 0.714148418414363,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit",
+      "name": "Circuit-1.7B",
+      "repo": "jbarney/circuit-1.7b",
+      "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-1.7B-Base",
+        "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.8155866670422256,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit-ezmjtrtv.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.7448116287973593
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.7448116287973593,
+              0.25518837120264065
+            ],
+            "logits": [
+              1.5294363498687744,
+              -0.3450400233268738
+            ],
+            "input_tokens": 54
+          }
+        }
+      },
+      "inference_seconds": 0.03334866720251739,
+      "probability_yes": 0.7448116287973593,
+      "probability_no": 0.2551883712026407,
+      "wants_refund": true,
+      "selected_probability": 0.7448116287973593,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.8116346898837075
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.8116346898837075,
+              0.18836531011629257
+            ],
+            "logits": [
+              0.574173092842102,
+              -0.8864940404891968
+            ],
+            "input_tokens": 65
+          }
+        }
+      },
+      "inference_seconds": 0.41266724979504943,
+      "probability_yes": 0.8116346898837075,
+      "probability_no": 0.18836531011629254,
+      "wants_refund": true,
+      "selected_probability": 0.8116346898837075,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.008111385502126747
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.008111385502126747,
+              0.9918886144978732
+            ],
+            "logits": [
+              -5.487759590148926,
+              -0.6814174652099609
+            ],
+            "input_tokens": 49
+          }
+        }
+      },
+      "inference_seconds": 0.0666977500077337,
+      "probability_yes": 0.008111385502126747,
+      "probability_no": 0.9918886144978732,
+      "wants_refund": false,
+      "selected_probability": 0.9918886144978732,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.17720283202082998
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.17720283202082998,
+              0.82279716797917
+            ],
+            "logits": [
+              -9.36699390411377,
+              -7.831579208374023
+            ],
+            "input_tokens": 47
+          }
+        }
+      },
+      "inference_seconds": 0.06840233388356864,
+      "probability_yes": 0.17720283202082998,
+      "probability_no": 0.82279716797917,
+      "wants_refund": false,
+      "selected_probability": 0.82279716797917,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.9063363481430564
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.9063363481430564,
+              0.0936636518569435
+            ],
+            "logits": [
+              3.227552890777588,
+              0.9578526020050049
+            ],
+            "input_tokens": 51
+          }
+        }
+      },
+      "inference_seconds": 0.07338900002650917,
+      "probability_yes": 0.9063363481430564,
+      "probability_no": 0.09366365185694359,
+      "wants_refund": true,
+      "selected_probability": 0.9063363481430564,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.8782422234623248
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.8782422234623248,
+              0.12175777653767529
+            ],
+            "logits": [
+              2.174428939819336,
+              0.19854013621807098
+            ],
+            "input_tokens": 50
+          }
+        }
+      },
+      "inference_seconds": 0.06646737502887845,
+      "probability_yes": 0.8782422234623248,
+      "probability_no": 0.12175777653767517,
+      "wants_refund": true,
+      "selected_probability": 0.8782422234623248,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.030993643760537416
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.030993643760537416,
+              0.9690063562394625
+            ],
+            "logits": [
+              -3.4382967948913574,
+              0.004192233085632324
+            ],
+            "input_tokens": 56
+          }
+        }
+      },
+      "inference_seconds": 0.10957604087889194,
+      "probability_yes": 0.030993643760537416,
+      "probability_no": 0.9690063562394626,
+      "wants_refund": false,
+      "selected_probability": 0.9690063562394626,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.85270011372044
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.85270011372044,
+              0.1472998862795601
+            ],
+            "logits": [
+              1.8996045589447021,
+              0.14366719126701355
+            ],
+            "input_tokens": 48
+          }
+        }
+      },
+      "inference_seconds": 0.09961150004528463,
+      "probability_yes": 0.85270011372044,
+      "probability_no": 0.14729988627956003,
+      "wants_refund": true,
+      "selected_probability": 0.85270011372044,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.04597783612498301
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.04597783612498301,
+              0.9540221638750169
+            ],
+            "logits": [
+              -5.362661838531494,
+              -2.330134391784668
+            ],
+            "input_tokens": 54
+          }
+        }
+      },
+      "inference_seconds": 0.06681674998253584,
+      "probability_yes": 0.04597783612498301,
+      "probability_no": 0.954022163875017,
+      "wants_refund": false,
+      "selected_probability": 0.954022163875017,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.12048297188608649
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.12048297188608649,
+              0.8795170281139134
+            ],
+            "logits": [
+              -9.920812606811523,
+              -7.932948112487793
+            ],
+            "input_tokens": 46
+          }
+        }
+      },
+      "inference_seconds": 0.07320550014264882,
+      "probability_yes": 0.12048297188608649,
+      "probability_no": 0.8795170281139135,
+      "wants_refund": false,
+      "selected_probability": 0.8795170281139135,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.9349933242425892
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.9349933242425892,
+              0.06500667575741079
+            ],
+            "logits": [
+              3.578240394592285,
+              0.9121909737586975
+            ],
+            "input_tokens": 44
+          }
+        }
+      },
+      "inference_seconds": 0.07599937496706843,
+      "probability_yes": 0.9349933242425892,
+      "probability_no": 0.06500667575741081,
+      "wants_refund": true,
+      "selected_probability": 0.9349933242425892,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.8404024989199391
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.8404024989199391,
+              0.15959750108006088
+            ],
+            "logits": [
+              -0.8128622770309448,
+              -2.474088191986084
+            ],
+            "input_tokens": 45
+          }
+        }
+      },
+      "inference_seconds": 0.06836195918731391,
+      "probability_yes": 0.8404024989199391,
+      "probability_no": 0.15959750108006088,
+      "wants_refund": true,
+      "selected_probability": 0.8404024989199391,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "circuit8b",
+      "name": "Circuit-8B",
+      "repo": "jbarney/circuit-8b",
+      "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+      "environment": ".venv-modern",
+      "source": "https://github.com/Barneyjm/circuit",
+      "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+      "base": {
+        "repo": "Qwen/Qwen3-8B-Base",
+        "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+      },
+      "note": "Official pointer head and LoRA adapter; parallel option masking enabled",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.3544836670625955,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/circuit8b-41p4opp5.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.38858789101422064
+          }
+        },
+        "native_response": {
+          "refund_requested": {
+            "probabilities": [
+              0.38858789101422064,
+              0.6114121089857794
+            ],
+            "logits": [
+              -5.799034118652344,
+              -5.345782279968262
+            ],
+            "input_tokens": 54
+          }
+        }
+      },
+      "inference_seconds": 0.06461116694845259,
+      "probability_yes": 0.38858789101422064,
+      "probability_no": 0.6114121089857794,
+      "wants_refund": false,
+      "selected_probability": 0.6114121089857794,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.994906485080719
+          }
+        },
+        "usage": {
+          "input_tokens": 62,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.3963691669050604,
+      "probability_yes": 0.994906485080719,
+      "probability_no": 0.005093514919281006,
+      "wants_refund": true,
+      "selected_probability": 0.994906485080719,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.012922102585434914
+          }
+        },
+        "usage": {
+          "input_tokens": 46,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.0576809998601675,
+      "probability_yes": 0.012922102585434914,
+      "probability_no": 0.9870778974145651,
+      "wants_refund": false,
+      "selected_probability": 0.9870778974145651,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.004401498008519411
+          }
+        },
+        "usage": {
+          "input_tokens": 44,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.05633804202079773,
+      "probability_yes": 0.004401498008519411,
+      "probability_no": 0.9955985019914806,
+      "wants_refund": false,
+      "selected_probability": 0.9955985019914806,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9843233823776245
+          }
+        },
+        "usage": {
+          "input_tokens": 48,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.0592548749409616,
+      "probability_yes": 0.9843233823776245,
+      "probability_no": 0.01567661762237549,
+      "wants_refund": true,
+      "selected_probability": 0.9843233823776245,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9676802754402161
+          }
+        },
+        "usage": {
+          "input_tokens": 47,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.05681270896457136,
+      "probability_yes": 0.9676802754402161,
+      "probability_no": 0.032319724559783936,
+      "wants_refund": true,
+      "selected_probability": 0.9676802754402161,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.06827779114246368
+          }
+        },
+        "usage": {
+          "input_tokens": 53,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.059152666945010424,
+      "probability_yes": 0.06827779114246368,
+      "probability_no": 0.9317222088575363,
+      "wants_refund": false,
+      "selected_probability": 0.9317222088575363,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9955896735191345
+          }
+        },
+        "usage": {
+          "input_tokens": 45,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.05845041596330702,
+      "probability_yes": 0.9955896735191345,
+      "probability_no": 0.0044103264808654785,
+      "wants_refund": true,
+      "selected_probability": 0.9955896735191345,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.016498254612088203
+          }
+        },
+        "usage": {
+          "input_tokens": 51,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.11071341577917337,
+      "probability_yes": 0.016498254612088203,
+      "probability_no": 0.9835017453879118,
+      "wants_refund": false,
+      "selected_probability": 0.9835017453879118,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0054015181958675385
+          }
+        },
+        "usage": {
+          "input_tokens": 43,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.0530259998049587,
+      "probability_yes": 0.0054015181958675385,
+      "probability_no": 0.9945984818041325,
+      "wants_refund": false,
+      "selected_probability": 0.9945984818041325,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9911226630210876
+          }
+        },
+        "usage": {
+          "input_tokens": 41,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.05906416708603501,
+      "probability_yes": 0.9911226630210876,
+      "probability_no": 0.008877336978912354,
+      "wants_refund": true,
+      "selected_probability": 0.9911226630210876,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9545270204544067
+          }
+        },
+        "usage": {
+          "input_tokens": 42,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.061121457954868674,
+      "probability_yes": 0.9545270204544067,
+      "probability_no": 0.04547297954559326,
+      "wants_refund": true,
+      "selected_probability": 0.9545270204544067,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "openthai",
+      "name": "OpenThai-SystemOne",
+      "repo": "iapp/OpenThai-SystemOne",
+      "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+      "environment": ".venv-modern",
+      "source": "https://github.com/iapp-technology/openthai-systemone",
+      "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+      "note": "Thai/English 0.8B checkpoint with a 256-slot decision head",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.974372958065942,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/openthai-4tuhtebr.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "iapp/OpenThai-SystemOne",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.4166410565376282
+          }
+        },
+        "usage": {
+          "input_tokens": 51,
+          "output_tokens": 0,
+          "permutations": 1
+        }
+      },
+      "inference_seconds": 0.04540033312514424,
+      "probability_yes": 0.4166410565376282,
+      "probability_no": 0.5833589434623718,
+      "wants_refund": false,
+      "selected_probability": 0.5833589434623718,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    }
+  ]
+}

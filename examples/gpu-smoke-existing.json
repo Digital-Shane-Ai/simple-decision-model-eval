@@ -1,0 +1,341 @@
+{
+  "created_at": "2026-09-29T12:34:00.003354+00:00",
+  "question": "Does the user request a refund or ask for their money back for a product?",
+  "threshold": 0.5,
+  "cases": [
+    {
+      "id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true
+    }
+  ],
+  "models": {
+    "laya": {
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"
+    },
+    "kev": {
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1"
+    },
+    "lumma": {
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96"
+    },
+    "mojev": {
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb"
+    },
+    "agentjev": {
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee"
+    }
+  },
+  "summary": [
+    {
+      "model": "Laya",
+      "cases": 1,
+      "answered": 1,
+      "errors": 0,
+      "labelled": 1,
+      "correct": 1,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.0016483599999999976,
+      "mean_inference_seconds": 1.3733034578617662,
+      "load_seconds": 1.3975721248425543
+    },
+    {
+      "model": "Kev-4B",
+      "cases": 1,
+      "answered": 1,
+      "errors": 0,
+      "labelled": 1,
+      "correct": 1,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.012814239999999992,
+      "mean_inference_seconds": 2.297192540951073,
+      "load_seconds": 7.191997041925788
+    },
+    {
+      "model": "Lumma-Fev-4B",
+      "cases": 1,
+      "answered": 1,
+      "errors": 0,
+      "labelled": 1,
+      "correct": 1,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 9.999999999997797e-09,
+      "mean_inference_seconds": 3.006924291839823,
+      "load_seconds": 3.019879125058651
+    },
+    {
+      "model": "MoJev",
+      "cases": 1,
+      "answered": 0,
+      "errors": 1,
+      "labelled": 1,
+      "correct": 0,
+      "accuracy_on_answered": null,
+      "correct_over_labelled": 0.0,
+      "coverage": 0.0,
+      "brier_score": null,
+      "mean_inference_seconds": null,
+      "load_seconds": null
+    },
+    {
+      "model": "AgentJev",
+      "cases": 1,
+      "answered": 1,
+      "errors": 0,
+      "labelled": 1,
+      "correct": 0,
+      "accuracy_on_answered": 0.0,
+      "correct_over_labelled": 0.0,
+      "coverage": 1.0,
+      "brier_score": 0.4857438146438575,
+      "mean_inference_seconds": 1.2653502500616014,
+      "load_seconds": 3.0799686671234667
+    }
+  ],
+  "results": [
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3975721248425543,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c2o0mwzt.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9594,
+            "confidence": 0.9594,
+            "answer_confidence": 0.9594,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 75,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 1.3733034578617662,
+      "probability_yes": 0.9594,
+      "probability_no": 0.04059999999999997,
+      "wants_refund": true,
+      "selected_probability": 0.9594,
+      "returned_confidence": 0.9594,
+      "returned_answer_confidence": 0.9594,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.191997041925788,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-b05aqs4r.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.8868
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 2.297192540951073,
+      "probability_yes": 0.8868,
+      "probability_no": 0.11319999999999997,
+      "wants_refund": true,
+      "selected_probability": 0.8868,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.019879125058651,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-43efrmyw.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9999
+          }
+        }
+      },
+      "inference_seconds": 3.006924291839823,
+      "probability_yes": 0.9999,
+      "probability_no": 9.999999999998899e-05,
+      "wants_refund": true,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "error",
+      "device": null,
+      "load_seconds": null,
+      "runtime": null,
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-mg5j7eii.log",
+      "execution": "local",
+      "error": "RuntimeError: Model worker exited with code -6.",
+      "diagnostics": "\nFetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]\nFetching 9 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 9/9 [00:00<00:00, 6647.07it/s]\n\nLoading weights:   0%|          | 0/477 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 477/477 [00:00<00:00, 11778.70it/s]\n[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.\n[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.\n(mpsFileLoc): /AppleInternal/Library/BuildRoots/4~CVSHugDiYgrVdOTNJyleaNbXGmu6JysPpqAr9rY/Library/Caches/com.apple.xbs/TemporaryDirectory.NX6nju/Sources/MetalPerformanceShadersGraph/mpsgraph/MetalPerformanceShadersGraph/Core/Files/MPSGraphUtilities.mm:234:0: error: 'mps.add' op requires the same element type for all operands and results\n(mpsFileLoc): /AppleInternal/Library/BuildRoots/4~CVSHugDiYgrVdOTNJyleaNbXGmu6JysPpqAr9rY/Library/Caches/com.apple.xbs/TemporaryDirectory.NX6nju/Sources/MetalPerformanceShadersGraph/mpsgraph/MetalPerformanceShadersGraph/Core/Files/MPSGraphUtilities.mm:234:0: note: see current operation: %12 = \"mps.add\"(%10, %arg3) : (tensor<1x8x64x64xbf16>, tensor<1x8x64x64xf32>) -> tensor<*xf32>\n(mpsFileLoc): /AppleInternal/Library/BuildRoots/4~CVSHugDiYgrVdOTNJyleaNbXGmu6JysPpqAr9rY/Library/Caches/com.apple.xbs/TemporaryDirectory.NX6nju/Sources/MetalPerformanceShadersGraph/mpsgraph/MetalPerformanceShadersGraph/Core/Files/MPSGraphUtilities.mm:234:0: error: 'mps.add' op requires the same element type for all operands and results\n(mpsFileLoc): /AppleInternal/Library/BuildRoots/4~CVSHugDiYgrVdOTNJyleaNbXGmu6JysPpqAr9rY/Library/Caches/com.apple.xbs/TemporaryDirectory.NX6nju/Sources/MetalPerformanceShadersGraph/mpsgraph/MetalPerformanceShadersGraph/Core/Files/MPSGraphUtilities.mm:234:0: note: see current operation: %12 = \"mps.add\"(%10, %arg3) : (tensor<1x8x64x64xbf16>, tensor<1x8x64x64xf32>) -> tensor<*xf32>\n/AppleInternal/Library/BuildRoots/4~CVSHugDiYgrVdOTNJyleaNbXGmu6JysPpqAr9rY/Library/Caches/com.apple.xbs/TemporaryDirectory.NX6nju/Sources/MetalPerformanceShadersGraph/mpsgraph/MetalPerformanceShadersGraph/Core/Files/MPSGraphExecutable.mm:1484: failed assertion `original module failed verification'\n/opt/homebrew/Cellar/python@3.13/3.13.15/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-33260-v_18qmg2'}\n  warnings.warn(\n"
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "message",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.0799686671234667,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-euxtbcmb.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.3030467629432678
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.3030467629432678,
+                    "false": 0.6969532370567322
+                  },
+                  "probability": 0.3030467629432678,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 126,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 126,
+            "shared_prefix_questions": 0,
+            "wall_ms": 1264.9
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 1.2653502500616014,
+      "probability_yes": 0.3030467629432678,
+      "probability_no": 0.6969532370567322,
+      "wants_refund": false,
+      "selected_probability": 0.6969532370567322,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Circuit's text scorer only; training/server dependencies are not needed.
+torch==2.14.0
+transformers==5.17.0
+peft==0.21.0
+accelerate==1.15.0
+safetensors==0.8.0
+pydantic==2.13.5
+verqen @ git+https://github.com/ZorQelis-AI/verqen.git@ce76e187163df2e83ee189d020cca0feedfa5d06
+openthai-systemone @ git+https://github.com/iapp-technology/openthai-systemone.git@5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf

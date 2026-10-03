@@ -1,0 +1,13 @@
+{
+  "request_type": {
+    "type": "choice",
+    "instructions": "What is the customer’s current primary request? Classify the action requested now, not a past refund or an option they explicitly reject.",
+    "criteria": {
+      "refund": "A current request for money back, including cancellation with a refund.",
+      "replacement": "Send another item instead of a refund.",
+      "repair": "Repair the existing item instead of a refund.",
+      "order_status": "Shipping, tracking, or delivery status for an existing order.",
+      "other": "Pre-purchase questions, keeping the product, or no current request in the other categories."
+    }
+  }
+}

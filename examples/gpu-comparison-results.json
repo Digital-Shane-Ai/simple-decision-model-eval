@@ -1,0 +1,4450 @@
+{
+  "created_at": "2026-09-29T12:47:56.325559+00:00",
+  "question": "Does the user request a refund or ask for their money back for a product?",
+  "threshold": 0.5,
+  "cases": [
+    {
+      "id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true
+    },
+    {
+      "id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false
+    },
+    {
+      "id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false
+    },
+    {
+      "id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true
+    },
+    {
+      "id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true
+    },
+    {
+      "id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false
+    },
+    {
+      "id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true
+    },
+    {
+      "id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false
+    },
+    {
+      "id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false
+    },
+    {
+      "id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true
+    },
+    {
+      "id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true
+    },
+    {
+      "id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false
+    }
+  ],
+  "models": {
+    "laya": {
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"
+    },
+    "kev": {
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1"
+    },
+    "kev9b": {
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1"
+    },
+    "kev27b": {
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1"
+    },
+    "lumma": {
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96"
+    },
+    "lumma9b": {
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e"
+    },
+    "mojev": {
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb"
+    },
+    "agentjev": {
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee"
+    }
+  },
+  "summary": [
+    {
+      "model": "Laya",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 11,
+      "accuracy_on_answered": 0.9166666666666666,
+      "correct_over_labelled": 0.9166666666666666,
+      "coverage": 1.0,
+      "brier_score": 0.07339491166666667,
+      "mean_inference_seconds": 0.03532090635659794,
+      "load_seconds": 1.3037613751366735
+    },
+    {
+      "model": "Kev-4B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.020212744166666664,
+      "mean_inference_seconds": 0.06252827431308106,
+      "load_seconds": 4.50838958285749
+    },
+    {
+      "model": "Kev-9B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.002471441666666667,
+      "mean_inference_seconds": 0.11610338216026624,
+      "load_seconds": 7.518108708085492
+    },
+    {
+      "model": "Kev-27B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.004626383333333333,
+      "mean_inference_seconds": 0.40600647911196575,
+      "load_seconds": 23.346161208115518
+    },
+    {
+      "model": "Lumma-Fev-4B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.00025956250000000003,
+      "mean_inference_seconds": 0.2983103991718963,
+      "load_seconds": 2.9669937081635
+    },
+    {
+      "model": "Lumma-Fev-9B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 8.583333333332966e-08,
+      "mean_inference_seconds": 0.22760507299487168,
+      "load_seconds": 117.99781550001353
+    },
+    {
+      "model": "MoJev",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 7,
+      "accuracy_on_answered": 0.5833333333333334,
+      "correct_over_labelled": 0.5833333333333334,
+      "coverage": 1.0,
+      "brier_score": 0.20941346775318415,
+      "mean_inference_seconds": 0.1408002326109757,
+      "load_seconds": 2.517051874892786
+    },
+    {
+      "model": "AgentJev",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 9,
+      "accuracy_on_answered": 0.75,
+      "correct_over_labelled": 0.75,
+      "coverage": 1.0,
+      "brier_score": 0.14714868985874446,
+      "mean_inference_seconds": 0.06173731260544931,
+      "load_seconds": 3.100499582942575
+    }
+  ],
+  "results": [
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9594,
+            "confidence": 0.9594,
+            "answer_confidence": 0.9594,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 75,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.11787058413028717,
+      "probability_yes": 0.9594,
+      "probability_no": 0.04059999999999997,
+      "wants_refund": true,
+      "selected_probability": 0.9594,
+      "returned_confidence": 0.9594,
+      "returned_answer_confidence": 0.9594,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.7657,
+            "confidence": 0.7657,
+            "answer_confidence": 0.7657,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 59,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.06954441708512604,
+      "probability_yes": 0.7657,
+      "probability_no": 0.23429999999999995,
+      "wants_refund": true,
+      "selected_probability": 0.7657,
+      "returned_confidence": 0.7657,
+      "returned_answer_confidence": 0.7657,
+      "correct": false
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0215,
+            "confidence": 0.9785,
+            "answer_confidence": 0.9785,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 57,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.01816083420999348,
+      "probability_yes": 0.0215,
+      "probability_no": 0.9785,
+      "wants_refund": false,
+      "selected_probability": 0.9785,
+      "returned_confidence": 0.9785,
+      "returned_answer_confidence": 0.9785,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9576,
+            "confidence": 0.9576,
+            "answer_confidence": 0.9576,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 61,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.016828374937176704,
+      "probability_yes": 0.9576,
+      "probability_no": 0.04239999999999999,
+      "wants_refund": true,
+      "selected_probability": 0.9576,
+      "returned_confidence": 0.9576,
+      "returned_answer_confidence": 0.9576,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9506,
+            "confidence": 0.9506,
+            "answer_confidence": 0.9506,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 60,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.016184832900762558,
+      "probability_yes": 0.9506,
+      "probability_no": 0.0494,
+      "wants_refund": true,
+      "selected_probability": 0.9506,
+      "returned_confidence": 0.9506,
+      "returned_answer_confidence": 0.9506,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.3217,
+            "confidence": 0.6783,
+            "answer_confidence": 0.6783,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 66,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.026503332890570164,
+      "probability_yes": 0.3217,
+      "probability_no": 0.6783,
+      "wants_refund": false,
+      "selected_probability": 0.6783,
+      "returned_confidence": 0.6783,
+      "returned_answer_confidence": 0.6783,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9307,
+            "confidence": 0.9307,
+            "answer_confidence": 0.9307,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 59,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.015402874909341335,
+      "probability_yes": 0.9307,
+      "probability_no": 0.06930000000000003,
+      "wants_refund": true,
+      "selected_probability": 0.9307,
+      "returned_confidence": 0.9307,
+      "returned_answer_confidence": 0.9307,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.3482,
+            "confidence": 0.6518,
+            "answer_confidence": 0.6518,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 64,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.06973925000056624,
+      "probability_yes": 0.3482,
+      "probability_no": 0.6517999999999999,
+      "wants_refund": false,
+      "selected_probability": 0.6517999999999999,
+      "returned_confidence": 0.6518,
+      "returned_answer_confidence": 0.6518,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.1954,
+            "confidence": 0.8046,
+            "answer_confidence": 0.8046,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 56,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.017472000094130635,
+      "probability_yes": 0.1954,
+      "probability_no": 0.8046,
+      "wants_refund": false,
+      "selected_probability": 0.8046,
+      "returned_confidence": 0.8046,
+      "returned_answer_confidence": 0.8046,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9417,
+            "confidence": 0.9417,
+            "answer_confidence": 0.9417,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 54,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.02183029195293784,
+      "probability_yes": 0.9417,
+      "probability_no": 0.05830000000000002,
+      "wants_refund": true,
+      "selected_probability": 0.9417,
+      "returned_confidence": 0.9417,
+      "returned_answer_confidence": 0.9417,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.8733,
+            "confidence": 0.8733,
+            "answer_confidence": 0.8733,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 55,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.019712625071406364,
+      "probability_yes": 0.8733,
+      "probability_no": 0.12670000000000003,
+      "wants_refund": true,
+      "selected_probability": 0.8733,
+      "returned_confidence": 0.8733,
+      "returned_answer_confidence": 0.8733,
+      "correct": true
+    },
+    {
+      "model_key": "laya",
+      "name": "Laya",
+      "repo": "convaiinnovations/laya",
+      "note": "Current English checkpoint",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 1.3037613751366735,
+      "runtime": {
+        "python": "3.14.7",
+        "torch": "2.14.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/laya-c90r9p01.log",
+      "execution": "local",
+      "raw_response": {
+        "model": "laya-rl-agent",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0304,
+            "confidence": 0.9696,
+            "answer_confidence": 0.9696,
+            "action": {
+              "act_probability": 1.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 64,
+          "output_tokens": 0
+        },
+        "routing": {
+          "model": "english",
+          "repo": "convaiinnovations/laya",
+          "reason": "explicit model='english'",
+          "detection": null,
+          "workflow": null
+        }
+      },
+      "inference_seconds": 0.01460145809687674,
+      "probability_yes": 0.0304,
+      "probability_no": 0.9696,
+      "wants_refund": false,
+      "selected_probability": 0.9696,
+      "returned_confidence": 0.9696,
+      "returned_answer_confidence": 0.9696,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.8868
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.08143258397467434,
+      "probability_yes": 0.8868,
+      "probability_no": 0.11319999999999997,
+      "wants_refund": true,
+      "selected_probability": 0.8868,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0204
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.06421358301304281,
+      "probability_yes": 0.0204,
+      "probability_no": 0.9796,
+      "wants_refund": false,
+      "selected_probability": 0.9796,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0419
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.06365562486462295,
+      "probability_yes": 0.0419,
+      "probability_no": 0.9581,
+      "wants_refund": false,
+      "selected_probability": 0.9581,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9243
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.065376500133425,
+      "probability_yes": 0.9243,
+      "probability_no": 0.07569999999999999,
+      "wants_refund": true,
+      "selected_probability": 0.9243,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.5895
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.0641909169498831,
+      "probability_yes": 0.5895,
+      "probability_no": 0.4105,
+      "wants_refund": true,
+      "selected_probability": 0.5895,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0496
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.06482033291831613,
+      "probability_yes": 0.0496,
+      "probability_no": 0.9504,
+      "wants_refund": false,
+      "selected_probability": 0.9504,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9114
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.06338074989616871,
+      "probability_yes": 0.9114,
+      "probability_no": 0.08860000000000001,
+      "wants_refund": true,
+      "selected_probability": 0.9114,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0223
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.0643147500231862,
+      "probability_yes": 0.0223,
+      "probability_no": 0.9777,
+      "wants_refund": false,
+      "selected_probability": 0.9777,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0553
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.051897583063691854,
+      "probability_yes": 0.0553,
+      "probability_no": 0.9447,
+      "wants_refund": false,
+      "selected_probability": 0.9447,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9518
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.05195416696369648,
+      "probability_yes": 0.9518,
+      "probability_no": 0.04820000000000002,
+      "wants_refund": true,
+      "selected_probability": 0.9518,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.8988
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.05112762493081391,
+      "probability_yes": 0.8988,
+      "probability_no": 0.10119999999999996,
+      "wants_refund": true,
+      "selected_probability": 0.8988,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev",
+      "name": "Kev-4B",
+      "repo": "jaredpalmer/kev-4b",
+      "note": "Qwen3.5-4B base plus trained adapter and decision head",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 4.50838958285749,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev-2sd0exs7.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.164
+          }
+        },
+        "temperature": 2.406050072164233
+      },
+      "inference_seconds": 0.06397487502545118,
+      "probability_yes": 0.164,
+      "probability_no": 0.836,
+      "wants_refund": false,
+      "selected_probability": 0.836,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9788
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.17290641693398356,
+      "probability_yes": 0.9788,
+      "probability_no": 0.021199999999999997,
+      "wants_refund": true,
+      "selected_probability": 0.9788,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0113
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.14705174998380244,
+      "probability_yes": 0.0113,
+      "probability_no": 0.9887,
+      "wants_refund": false,
+      "selected_probability": 0.9887,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0617
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.10542033310048282,
+      "probability_yes": 0.0617,
+      "probability_no": 0.9383,
+      "wants_refund": false,
+      "selected_probability": 0.9383,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9767
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.10646349983289838,
+      "probability_yes": 0.9767,
+      "probability_no": 0.023299999999999987,
+      "wants_refund": true,
+      "selected_probability": 0.9767,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9188
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.10479191597551107,
+      "probability_yes": 0.9188,
+      "probability_no": 0.08120000000000005,
+      "wants_refund": true,
+      "selected_probability": 0.9188,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0133
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.11094058398157358,
+      "probability_yes": 0.0133,
+      "probability_no": 0.9867,
+      "wants_refund": false,
+      "selected_probability": 0.9867,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9844
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.10556241706945002,
+      "probability_yes": 0.9844,
+      "probability_no": 0.015599999999999947,
+      "wants_refund": true,
+      "selected_probability": 0.9844,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0125
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.10530670895241201,
+      "probability_yes": 0.0125,
+      "probability_no": 0.9875,
+      "wants_refund": false,
+      "selected_probability": 0.9875,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0275
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.15304291690699756,
+      "probability_yes": 0.0275,
+      "probability_no": 0.9725,
+      "wants_refund": false,
+      "selected_probability": 0.9725,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.987
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.08614629204384983,
+      "probability_yes": 0.987,
+      "probability_no": 0.013000000000000012,
+      "wants_refund": true,
+      "selected_probability": 0.987,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9092
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.08706995914690197,
+      "probability_yes": 0.9092,
+      "probability_no": 0.09079999999999999,
+      "wants_refund": true,
+      "selected_probability": 0.9092,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev9b",
+      "name": "Kev-9B",
+      "repo": "jaredpalmer/kev-9b",
+      "note": "Official 9B Kev checkpoint",
+      "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 7.518108708085492,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev9b-lkh5m8tx.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0916
+          }
+        },
+        "temperature": 2.2973967099940698
+      },
+      "inference_seconds": 0.10853779199533165,
+      "probability_yes": 0.0916,
+      "probability_no": 0.9084,
+      "wants_refund": false,
+      "selected_probability": 0.9084,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9467
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 1.1768542919307947,
+      "probability_yes": 0.9467,
+      "probability_no": 0.053300000000000014,
+      "wants_refund": true,
+      "selected_probability": 0.9467,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0369
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.3521330419462174,
+      "probability_yes": 0.0369,
+      "probability_no": 0.9631,
+      "wants_refund": false,
+      "selected_probability": 0.9631,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0152
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.3504411668982357,
+      "probability_yes": 0.0152,
+      "probability_no": 0.9848,
+      "wants_refund": false,
+      "selected_probability": 0.9848,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9427
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.3536833331454545,
+      "probability_yes": 0.9427,
+      "probability_no": 0.05730000000000002,
+      "wants_refund": true,
+      "selected_probability": 0.9427,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.8902
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.3521903748624027,
+      "probability_yes": 0.8902,
+      "probability_no": 0.10980000000000001,
+      "wants_refund": true,
+      "selected_probability": 0.8902,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0187
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.35433195787481964,
+      "probability_yes": 0.0187,
+      "probability_no": 0.9813,
+      "wants_refund": false,
+      "selected_probability": 0.9813,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9653
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.3515057088807225,
+      "probability_yes": 0.9653,
+      "probability_no": 0.03469999999999995,
+      "wants_refund": true,
+      "selected_probability": 0.9653,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0481
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.35273562488146126,
+      "probability_yes": 0.0481,
+      "probability_no": 0.9519,
+      "wants_refund": false,
+      "selected_probability": 0.9519,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0192
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.2948260409757495,
+      "probability_yes": 0.0192,
+      "probability_no": 0.9808,
+      "wants_refund": false,
+      "selected_probability": 0.9808,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9675
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.290166542166844,
+      "probability_yes": 0.9675,
+      "probability_no": 0.03249999999999997,
+      "wants_refund": true,
+      "selected_probability": 0.9675,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9224
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.28995224996469915,
+      "probability_yes": 0.9224,
+      "probability_no": 0.0776,
+      "wants_refund": true,
+      "selected_probability": 0.9224,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "kev27b",
+      "name": "Kev-27B",
+      "repo": "jaredpalmer/kev-27b",
+      "note": "Official 27B Kev checkpoint",
+      "revision": "01b81998019be550f0ae858727df49bac9511195",
+      "source": "https://github.com/jaredpalmer/kev",
+      "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mlx:gpu",
+      "load_seconds": 23.346161208115518,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/kev27b-hkkdrk_o.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.1563
+          }
+        },
+        "temperature": 1.381912879967776
+      },
+      "inference_seconds": 0.35325741581618786,
+      "probability_yes": 0.1563,
+      "probability_no": 0.8437,
+      "wants_refund": false,
+      "selected_probability": 0.8437,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9999
+          }
+        }
+      },
+      "inference_seconds": 0.2770343329757452,
+      "probability_yes": 0.9999,
+      "probability_no": 9.999999999998899e-05,
+      "wants_refund": true,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.36126070795580745,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.6734245829284191,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.6719831249210984,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9998
+          }
+        }
+      },
+      "inference_seconds": 0.20216395799070597,
+      "probability_yes": 0.9998,
+      "probability_no": 0.00019999999999997797,
+      "wants_refund": true,
+      "selected_probability": 0.9998,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.20818420802243054,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.999
+          }
+        }
+      },
+      "inference_seconds": 0.21412195800803602,
+      "probability_yes": 0.999,
+      "probability_no": 0.0010000000000000009,
+      "wants_refund": true,
+      "selected_probability": 0.999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.2243615419138223,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0001
+          }
+        }
+      },
+      "inference_seconds": 0.21566316694952548,
+      "probability_yes": 0.0001,
+      "probability_no": 0.9999,
+      "wants_refund": false,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9999
+          }
+        }
+      },
+      "inference_seconds": 0.21389304217882454,
+      "probability_yes": 0.9999,
+      "probability_no": 9.999999999998899e-05,
+      "wants_refund": true,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9998
+          }
+        }
+      },
+      "inference_seconds": 0.2052498331759125,
+      "probability_yes": 0.9998,
+      "probability_no": 0.00019999999999997797,
+      "wants_refund": true,
+      "selected_probability": 0.9998,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma",
+      "name": "Lumma-Fev-4B",
+      "repo": "FrontiersMind/Lumma-fev-4b",
+      "note": "4B checkpoint requested by the user",
+      "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.9669937081635,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma-13ryzfyg.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0558
+          }
+        }
+      },
+      "inference_seconds": 0.1123843330424279,
+      "probability_yes": 0.0558,
+      "probability_no": 0.9442,
+      "wants_refund": false,
+      "selected_probability": 0.9442,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.6788497501984239,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.19287758297286928,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0001
+          }
+        }
+      },
+      "inference_seconds": 0.19047258305363357,
+      "probability_yes": 0.0001,
+      "probability_no": 0.9999,
+      "wants_refund": false,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.1999596250243485,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9998
+          }
+        }
+      },
+      "inference_seconds": 0.19106899993494153,
+      "probability_yes": 0.9998,
+      "probability_no": 0.00019999999999997797,
+      "wants_refund": true,
+      "selected_probability": 0.9998,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.20204991707578301,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.21208266681060195,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.186922708991915,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0001
+          }
+        }
+      },
+      "inference_seconds": 0.18183299992233515,
+      "probability_yes": 0.0001,
+      "probability_no": 0.9999,
+      "wants_refund": false,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.18812529183924198,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9996
+          }
+        }
+      },
+      "inference_seconds": 0.1797422501258552,
+      "probability_yes": 0.9996,
+      "probability_no": 0.00039999999999995595,
+      "wants_refund": true,
+      "selected_probability": 0.9996,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0009
+          }
+        }
+      },
+      "inference_seconds": 0.1272764999885112,
+      "probability_yes": 0.0009,
+      "probability_no": 0.9991,
+      "wants_refund": false,
+      "selected_probability": 0.9991,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.2338518500328064
+          }
+        },
+        "usage": {
+          "input_tokens": 64,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.15572116617113352,
+      "probability_yes": 0.2338518500328064,
+      "probability_no": 0.7661481499671936,
+      "wants_refund": false,
+      "selected_probability": 0.7661481499671936,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.10095972567796707
+          }
+        },
+        "usage": {
+          "input_tokens": 48,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.22986212489195168,
+      "probability_yes": 0.10095972567796707,
+      "probability_no": 0.8990402743220329,
+      "wants_refund": false,
+      "selected_probability": 0.8990402743220329,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.24861809611320496
+          }
+        },
+        "usage": {
+          "input_tokens": 46,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.21571641601622105,
+      "probability_yes": 0.24861809611320496,
+      "probability_no": 0.751381903886795,
+      "wants_refund": false,
+      "selected_probability": 0.751381903886795,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.6806391477584839
+          }
+        },
+        "usage": {
+          "input_tokens": 50,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.14826283301226795,
+      "probability_yes": 0.6806391477584839,
+      "probability_no": 0.3193608522415161,
+      "wants_refund": true,
+      "selected_probability": 0.6806391477584839,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.3210635781288147
+          }
+        },
+        "usage": {
+          "input_tokens": 49,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.10938324988819659,
+      "probability_yes": 0.3210635781288147,
+      "probability_no": 0.6789364218711853,
+      "wants_refund": false,
+      "selected_probability": 0.6789364218711853,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.2723117172718048
+          }
+        },
+        "usage": {
+          "input_tokens": 55,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.15098991710692644,
+      "probability_yes": 0.2723117172718048,
+      "probability_no": 0.7276882827281952,
+      "wants_refund": false,
+      "selected_probability": 0.7276882827281952,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.298581600189209
+          }
+        },
+        "usage": {
+          "input_tokens": 47,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.11641458398662508,
+      "probability_yes": 0.298581600189209,
+      "probability_no": 0.701418399810791,
+      "wants_refund": false,
+      "selected_probability": 0.701418399810791,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.22878777980804443
+          }
+        },
+        "usage": {
+          "input_tokens": 53,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.14237770903855562,
+      "probability_yes": 0.22878777980804443,
+      "probability_no": 0.7712122201919556,
+      "wants_refund": false,
+      "selected_probability": 0.7712122201919556,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.29460763931274414
+          }
+        },
+        "usage": {
+          "input_tokens": 45,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.14744445797987282,
+      "probability_yes": 0.29460763931274414,
+      "probability_no": 0.7053923606872559,
+      "wants_refund": false,
+      "selected_probability": 0.7053923606872559,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.4500398635864258
+          }
+        },
+        "usage": {
+          "input_tokens": 43,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.10893224994651973,
+      "probability_yes": 0.4500398635864258,
+      "probability_no": 0.5499601364135742,
+      "wants_refund": false,
+      "selected_probability": 0.5499601364135742,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.4973805248737335
+          }
+        },
+        "usage": {
+          "input_tokens": 44,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.11252020811662078,
+      "probability_yes": 0.4973805248737335,
+      "probability_no": 0.5026194751262665,
+      "wants_refund": false,
+      "selected_probability": 0.5026194751262665,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "mojev",
+      "name": "MoJev",
+      "repo": "MoLeMo-Lab/mojev",
+      "note": "Published 0.85B checkpoint",
+      "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+      "source": "https://github.com/MoLeMo-Lab/mojev",
+      "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 2.517051874892786,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/mojev-qr0v4wuo.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.17512093484401703
+          }
+        },
+        "usage": {
+          "input_tokens": 53,
+          "output_tokens": 0
+        }
+      },
+      "inference_seconds": 0.05197787517681718,
+      "probability_yes": 0.17512093484401703,
+      "probability_no": 0.824879065155983,
+      "wants_refund": false,
+      "selected_probability": 0.824879065155983,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.3030467629432678
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.3030467629432678,
+                    "false": 0.6969532370567322
+                  },
+                  "probability": 0.3030467629432678,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 126,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 126,
+            "shared_prefix_questions": 0,
+            "wall_ms": 121.51
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.12209541699849069,
+      "probability_yes": 0.3030467629432678,
+      "probability_no": 0.6969532370567322,
+      "wants_refund": false,
+      "selected_probability": 0.6969532370567322,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.12788595259189606
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.12788595259189606,
+                    "false": 0.8721140623092651
+                  },
+                  "probability": 0.12788595259189606,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 94,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 94,
+            "shared_prefix_questions": 0,
+            "wall_ms": 152.86
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.15307887503877282,
+      "probability_yes": 0.12788595259189606,
+      "probability_no": 0.8721140474081039,
+      "wants_refund": false,
+      "selected_probability": 0.8721140474081039,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.14374414086341858
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.14374414086341858,
+                    "false": 0.8562558889389038
+                  },
+                  "probability": 0.14374414086341858,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 90,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 90,
+            "shared_prefix_questions": 0,
+            "wall_ms": 45.89
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.046119374921545386,
+      "probability_yes": 0.14374414086341858,
+      "probability_no": 0.8562558591365814,
+      "wants_refund": false,
+      "selected_probability": 0.8562558591365814,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.5020095109939575
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.5020095109939575,
+                    "false": 0.4979904890060425
+                  },
+                  "probability": 0.5020095109939575,
+                  "value": true
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 98,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 98,
+            "shared_prefix_questions": 0,
+            "wall_ms": 42.99
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.0431934162043035,
+      "probability_yes": 0.5020095109939575,
+      "probability_no": 0.4979904890060425,
+      "wants_refund": true,
+      "selected_probability": 0.5020095109939575,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.5573214292526245
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.5573214292526245,
+                    "false": 0.4426786005496979
+                  },
+                  "probability": 0.5573214292526245,
+                  "value": true
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 96,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 96,
+            "shared_prefix_questions": 0,
+            "wall_ms": 85.07
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.08529591700062156,
+      "probability_yes": 0.5573214292526245,
+      "probability_no": 0.4426785707473755,
+      "wants_refund": true,
+      "selected_probability": 0.5573214292526245,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.08478184789419174
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.08478184789419174,
+                    "false": 0.91521817445755
+                  },
+                  "probability": 0.08478184789419174,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 108,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 108,
+            "shared_prefix_questions": 0,
+            "wall_ms": 44.31
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.04451216710731387,
+      "probability_yes": 0.08478184789419174,
+      "probability_no": 0.9152181521058083,
+      "wants_refund": false,
+      "selected_probability": 0.9152181521058083,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.4149152338504791
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.4149152338504791,
+                    "false": 0.5850847959518433
+                  },
+                  "probability": 0.4149152338504791,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 92,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 92,
+            "shared_prefix_questions": 0,
+            "wall_ms": 46.64
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.046842042123898864,
+      "probability_yes": 0.4149152338504791,
+      "probability_no": 0.5850847661495209,
+      "wants_refund": false,
+      "selected_probability": 0.5850847661495209,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.09690199792385101
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.09690199792385101,
+                    "false": 0.9030979871749878
+                  },
+                  "probability": 0.09690199792385101,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 104,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 104,
+            "shared_prefix_questions": 0,
+            "wall_ms": 47.85
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.04805804090574384,
+      "probability_yes": 0.09690199792385101,
+      "probability_no": 0.903098002076149,
+      "wants_refund": false,
+      "selected_probability": 0.903098002076149,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.08321259170770645
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.08321259170770645,
+                    "false": 0.9167873859405518
+                  },
+                  "probability": 0.08321259170770645,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 88,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 88,
+            "shared_prefix_questions": 0,
+            "wall_ms": 43.67
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.0438699999358505,
+      "probability_yes": 0.08321259170770645,
+      "probability_no": 0.9167874082922935,
+      "wants_refund": false,
+      "selected_probability": 0.9167874082922935,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.4837421774864197
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.4837421774864197,
+                    "false": 0.5162578821182251
+                  },
+                  "probability": 0.4837421774864197,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 84,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 84,
+            "shared_prefix_questions": 0,
+            "wall_ms": 42.47
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.04265433410182595,
+      "probability_yes": 0.4837421774864197,
+      "probability_no": 0.5162578225135803,
+      "wants_refund": false,
+      "selected_probability": 0.5162578225135803,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": false
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.6504620313644409
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.6504620313644409,
+                    "false": 0.34953799843788147
+                  },
+                  "probability": 0.6504620313644409,
+                  "value": true
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 86,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 86,
+            "shared_prefix_questions": 0,
+            "wall_ms": 44.41
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.04461358394473791,
+      "probability_yes": 0.6504620313644409,
+      "probability_no": 0.3495379686355591,
+      "wants_refund": true,
+      "selected_probability": 0.6504620313644409,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "agentjev",
+      "name": "AgentJev",
+      "repo": "aimeigaoshou/agent-jev",
+      "note": "Published coding-completion checkpoint; refund detection is out of domain",
+      "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+      "source": "https://github.com/malevrigns/agent-jev",
+      "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 3.100499582942575,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/agentjev-v68df9vp.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "noul": 0.21104268729686737
+          }
+        },
+        "native_response": {
+          "api_version": "agentjev.decision.v1",
+          "model": "aimeigaoshou/agent-jev@0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+          "results": [
+            {
+              "id": "0",
+              "answers": [
+                {
+                  "id": "refund_requested",
+                  "type": "boolean",
+                  "distribution": {
+                    "true": 0.21104268729686737,
+                    "false": 0.7889573574066162
+                  },
+                  "probability": 0.21104268729686737,
+                  "value": false
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "questions": 1,
+            "candidate_paths": 2,
+            "input_path_tokens": 104,
+            "generated_tokens": 0,
+            "truncated_inputs": 0,
+            "backbone_input_tokens": 104,
+            "shared_prefix_questions": 0,
+            "wall_ms": 20.31
+          }
+        },
+        "temperatures": {
+          "boolean": 1.0717734625362931,
+          "choice": 1.0352649238413776,
+          "score": 1.0717734625362931
+        }
+      },
+      "inference_seconds": 0.02051458298228681,
+      "probability_yes": 0.21104268729686737,
+      "probability_no": 0.7889573127031326,
+      "wants_refund": false,
+      "selected_probability": 0.7889573127031326,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    }
+  ],
+  "source_runs": [
+    {
+      "file": "examples/gpu-existing-suite.json",
+      "created_at": "2026-09-29T12:39:03.758740+00:00"
+    },
+    {
+      "file": "examples/gpu-kev9b.json",
+      "created_at": "2026-09-29T12:37:35.173237+00:00"
+    },
+    {
+      "file": "examples/gpu-kev27b.json",
+      "created_at": "2026-09-29T12:42:54.118913+00:00"
+    },
+    {
+      "file": "examples/gpu-lumma9b.json",
+      "created_at": "2026-09-29T12:47:28.549253+00:00"
+    }
+  ],
+  "note": "Combined separate GPU suite runs on the same 12 cases; source run timestamps are retained."
+}

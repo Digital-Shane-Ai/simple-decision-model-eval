@@ -1,0 +1,7 @@
+.venv/
+.venv-models/
+.cache/
+__pycache__/
+*.pyc
+.venv-modern/
+.venv-wev/

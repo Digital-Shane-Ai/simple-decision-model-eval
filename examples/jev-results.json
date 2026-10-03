@@ -1,0 +1,659 @@
+{
+  "created_at": "2026-09-29T11:38:24.076904+00:00",
+  "question": "Does the user request a refund or ask for their money back for a product?",
+  "threshold": 0.5,
+  "cases": [
+    {
+      "id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true
+    },
+    {
+      "id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false
+    },
+    {
+      "id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false
+    },
+    {
+      "id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true
+    },
+    {
+      "id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true
+    },
+    {
+      "id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false
+    },
+    {
+      "id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true
+    },
+    {
+      "id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false
+    },
+    {
+      "id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false
+    },
+    {
+      "id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true
+    },
+    {
+      "id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true
+    },
+    {
+      "id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false
+    }
+  ],
+  "models": {
+    "jev": {
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null
+    }
+  },
+  "summary": [
+    {
+      "model": "Jev 1.13 (OpenRouter)",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 0.0007666666666666668,
+      "mean_inference_seconds": 0.2056169340503402,
+      "load_seconds": null
+    }
+  ],
+  "results": [
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.99
+          }
+        },
+        "usage": {
+          "input_tokens": 315,
+          "output_tokens": 21,
+          "cost": 1.323e-05
+        },
+        "id": "gen-dec-1790681901-0MAs25Q0hgMAjjT1HIlG",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.3248563748784363,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.323e-05,
+      "probability_yes": 0.99,
+      "probability_no": 0.010000000000000009,
+      "wants_refund": true,
+      "selected_probability": 0.99,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.03
+          }
+        },
+        "usage": {
+          "input_tokens": 299,
+          "output_tokens": 21,
+          "cost": 1.2558e-05
+        },
+        "id": "gen-dec-1790681901-sKA17Jt1NPfhSKEn6wcX",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.18508445913903415,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2558e-05,
+      "probability_yes": 0.03,
+      "probability_no": 0.97,
+      "wants_refund": false,
+      "selected_probability": 0.97,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.01
+          }
+        },
+        "usage": {
+          "input_tokens": 297,
+          "output_tokens": 21,
+          "cost": 1.2474e-05
+        },
+        "id": "gen-dec-1790681902-w1mwKqhSHmh4URiW4W21",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.3021068749949336,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2474e-05,
+      "probability_yes": 0.01,
+      "probability_no": 0.99,
+      "wants_refund": false,
+      "selected_probability": 0.99,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.99
+          }
+        },
+        "usage": {
+          "input_tokens": 301,
+          "output_tokens": 21,
+          "cost": 1.2642e-05
+        },
+        "id": "gen-dec-1790681902-DVujMw26dFm35kHGVgSJ",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.16975874989293516,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2642e-05,
+      "probability_yes": 0.99,
+      "probability_no": 0.010000000000000009,
+      "wants_refund": true,
+      "selected_probability": 0.99,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.99
+          }
+        },
+        "usage": {
+          "input_tokens": 300,
+          "output_tokens": 21,
+          "cost": 1.26e-05
+        },
+        "id": "gen-dec-1790681902-WhDqXKYhhLthB58OVPgp",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.19329491700045764,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.26e-05,
+      "probability_yes": 0.99,
+      "probability_no": 0.010000000000000009,
+      "wants_refund": true,
+      "selected_probability": 0.99,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.03
+          }
+        },
+        "usage": {
+          "input_tokens": 306,
+          "output_tokens": 21,
+          "cost": 1.2852e-05
+        },
+        "id": "gen-dec-1790681902-1SXlpArjc7EsoClY357p",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.20077187498100102,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2852e-05,
+      "probability_yes": 0.03,
+      "probability_no": 0.97,
+      "wants_refund": false,
+      "selected_probability": 0.97,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.99
+          }
+        },
+        "usage": {
+          "input_tokens": 298,
+          "output_tokens": 21,
+          "cost": 1.2516e-05
+        },
+        "id": "gen-dec-1790681903-yHvFTtpttXtRqr3yPo7w",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.1602147079538554,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2516e-05,
+      "probability_yes": 0.99,
+      "probability_no": 0.010000000000000009,
+      "wants_refund": true,
+      "selected_probability": 0.99,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.03
+          }
+        },
+        "usage": {
+          "input_tokens": 304,
+          "output_tokens": 21,
+          "cost": 1.2768e-05
+        },
+        "id": "gen-dec-1790681903-dfv8ZTjaqXlUipIaeqCx",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.18702516704797745,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2768e-05,
+      "probability_yes": 0.03,
+      "probability_no": 0.97,
+      "wants_refund": false,
+      "selected_probability": 0.97,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.03
+          }
+        },
+        "usage": {
+          "input_tokens": 296,
+          "output_tokens": 21,
+          "cost": 1.2432e-05
+        },
+        "id": "gen-dec-1790681903-CB5NXjCyySzJYSa5nf5O",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.15579283307306468,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2432e-05,
+      "probability_yes": 0.03,
+      "probability_no": 0.97,
+      "wants_refund": false,
+      "selected_probability": 0.97,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.99
+          }
+        },
+        "usage": {
+          "input_tokens": 294,
+          "output_tokens": 21,
+          "cost": 1.2348e-05
+        },
+        "id": "gen-dec-1790681903-fI7oCFUof8UgXBGQfVVG",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.17218158394098282,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2348e-05,
+      "probability_yes": 0.99,
+      "probability_no": 0.010000000000000009,
+      "wants_refund": true,
+      "selected_probability": 0.99,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.99
+          }
+        },
+        "usage": {
+          "input_tokens": 295,
+          "output_tokens": 21,
+          "cost": 1.239e-05
+        },
+        "id": "gen-dec-1790681903-cQJHXFxT2ZkeGRjIBxlZ",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.23420974984765053,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.239e-05,
+      "probability_yes": 0.99,
+      "probability_no": 0.010000000000000009,
+      "wants_refund": true,
+      "selected_probability": 0.99,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "jev",
+      "name": "Jev 1.13 (OpenRouter)",
+      "repo": "typesafe/jev-1.13",
+      "backend": "openrouter",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+      "revision": null,
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "OpenRouter API",
+      "load_seconds": null,
+      "runtime": {
+        "backend": "OpenRouter Decisions API",
+        "endpoint": "https://openrouter.ai/api/alpha/decisions"
+      },
+      "log_path": null,
+      "execution": "hosted",
+      "raw_response": {
+        "model": "typesafe/jev-1.13-20260917",
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.07
+          }
+        },
+        "usage": {
+          "input_tokens": 304,
+          "output_tokens": 21,
+          "cost": 1.2768e-05
+        },
+        "id": "gen-dec-1790681903-E62c8jDbIMcdHx5qnuIP",
+        "provider": "TypeSafe"
+      },
+      "inference_seconds": 0.18210591585375369,
+      "timing_scope": "API round trip including network and provider queue",
+      "cost_usd": 1.2768e-05,
+      "probability_yes": 0.07,
+      "probability_no": 0.9299999999999999,
+      "wants_refund": false,
+      "selected_probability": 0.9299999999999999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    }
+  ]
+}

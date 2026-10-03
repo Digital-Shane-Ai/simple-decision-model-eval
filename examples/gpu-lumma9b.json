@@ -1,0 +1,513 @@
+{
+  "created_at": "2026-09-29T12:47:28.549253+00:00",
+  "question": "Does the user request a refund or ask for their money back for a product?",
+  "threshold": 0.5,
+  "cases": [
+    {
+      "id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true
+    },
+    {
+      "id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false
+    },
+    {
+      "id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false
+    },
+    {
+      "id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true
+    },
+    {
+      "id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true
+    },
+    {
+      "id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false
+    },
+    {
+      "id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true
+    },
+    {
+      "id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false
+    },
+    {
+      "id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false
+    },
+    {
+      "id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true
+    },
+    {
+      "id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true
+    },
+    {
+      "id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false
+    }
+  ],
+  "models": {
+    "lumma9b": {
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e"
+    }
+  },
+  "summary": [
+    {
+      "model": "Lumma-Fev-9B",
+      "cases": 12,
+      "answered": 12,
+      "errors": 0,
+      "labelled": 12,
+      "correct": 12,
+      "accuracy_on_answered": 1.0,
+      "correct_over_labelled": 1.0,
+      "coverage": 1.0,
+      "brier_score": 8.583333333332966e-08,
+      "mean_inference_seconds": 0.22760507299487168,
+      "load_seconds": 117.99781550001353
+    }
+  ],
+  "results": [
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-headphones",
+      "message": "I bought a pair of wireless headphones last week, but the left earbud doesn't work. I'd like to return them and get a full refund, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.6788497501984239,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "replacement-only",
+      "message": "The headphones arrived broken. Please send a replacement. I do not want a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.19287758297286928,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "before-purchase",
+      "message": "Are these headphones compatible with my laptop? I haven't purchased them yet.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0001
+          }
+        }
+      },
+      "inference_seconds": 0.19047258305363357,
+      "probability_yes": 0.0001,
+      "probability_no": 0.9999,
+      "wants_refund": false,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "money-back",
+      "message": "The shoes arrived in the wrong size. Please return my money to the card I paid with.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.1999596250243485,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-charge",
+      "message": "You charged me twice for the same coffee maker. Refund the duplicate payment, please.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9998
+          }
+        }
+      },
+      "inference_seconds": 0.19106899993494153,
+      "probability_yes": 0.9998,
+      "probability_no": 0.00019999999999997797,
+      "wants_refund": true,
+      "selected_probability": 0.9998,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "keep-product",
+      "message": "I thought about returning the blender, but I changed my mind. I'm keeping it and don't need a refund.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.20204991707578301,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-polite",
+      "message": "Could you please give me a refund for the jacket? The zipper is broken.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.21208266681060195,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "repair-only",
+      "message": "Can you repair my laptop under warranty? I'd prefer a repair and am not asking for my money back.",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0
+          }
+        }
+      },
+      "inference_seconds": 0.186922708991915,
+      "probability_yes": 0.0,
+      "probability_no": 1.0,
+      "wants_refund": false,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "shipping",
+      "message": "My order hasn't arrived. Can you send me the tracking number?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0001
+          }
+        }
+      },
+      "inference_seconds": 0.18183299992233515,
+      "probability_yes": 0.0001,
+      "probability_no": 0.9999,
+      "wants_refund": false,
+      "selected_probability": 0.9999,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-indirect",
+      "message": "These speakers don't work. I want my money back.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 1.0
+          }
+        }
+      },
+      "inference_seconds": 0.18812529183924198,
+      "probability_yes": 1.0,
+      "probability_no": 0.0,
+      "wants_refund": true,
+      "selected_probability": 1.0,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "cancel-refund",
+      "message": "Please cancel my undelivered desk order and refund the payment.",
+      "expected": true,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.9996
+          }
+        }
+      },
+      "inference_seconds": 0.1797422501258552,
+      "probability_yes": 0.9996,
+      "probability_no": 0.00039999999999995595,
+      "wants_refund": true,
+      "selected_probability": 0.9996,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    },
+    {
+      "model_key": "lumma9b",
+      "name": "Lumma-Fev-9B",
+      "repo": "FrontiersMind/Lumma-fev-9b",
+      "note": "Official 9B Lumma-Fev checkpoint",
+      "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e",
+      "case_id": "refund-history",
+      "message": "Thanks, I received the refund for my old order. For my new order, when will the shoes ship?",
+      "expected": false,
+      "status": "ok",
+      "device": "mps",
+      "load_seconds": 117.99781550001353,
+      "runtime": {
+        "python": "3.13.15",
+        "torch": "2.8.0"
+      },
+      "log_path": "/Users/shane/git/decision-models/.cache/logs/lumma9b-pl84im8p.log",
+      "execution": "local",
+      "raw_response": {
+        "answers": {
+          "refund_requested": {
+            "type": "noul",
+            "noul": 0.0009
+          }
+        }
+      },
+      "inference_seconds": 0.1272764999885112,
+      "probability_yes": 0.0009,
+      "probability_no": 0.9991,
+      "wants_refund": false,
+      "selected_probability": 0.9991,
+      "returned_confidence": null,
+      "returned_answer_confidence": null,
+      "correct": true
+    }
+  ]
+}

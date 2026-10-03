@@ -1,0 +1,164 @@
+{
+  "laya": {
+    "name": "Laya",
+    "repo": "convaiinnovations/laya",
+    "note": "Current English checkpoint",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"
+  },
+  "kev": {
+    "name": "Kev-4B",
+    "repo": "jaredpalmer/kev-4b",
+    "note": "Qwen3.5-4B base plus trained adapter and decision head",
+    "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+    "source": "https://github.com/jaredpalmer/kev",
+    "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1"
+  },
+  "kev9b": {
+    "name": "Kev-9B",
+    "repo": "jaredpalmer/kev-9b",
+    "note": "Official 9B Kev checkpoint",
+    "revision": "2629c06a5aeb0feb3b9783bafed17ed8f39ecf5c",
+    "source": "https://github.com/jaredpalmer/kev",
+    "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1"
+  },
+  "kev27b": {
+    "name": "Kev-27B",
+    "repo": "jaredpalmer/kev-27b",
+    "note": "Official 27B Kev checkpoint",
+    "revision": "01b81998019be550f0ae858727df49bac9511195",
+    "source": "https://github.com/jaredpalmer/kev",
+    "source_revision": "0c142becde423a0c68ec857f7831dac0315588a1"
+  },
+  "lumma": {
+    "name": "Lumma-Fev-4B",
+    "repo": "FrontiersMind/Lumma-fev-4b",
+    "note": "4B checkpoint requested by the user",
+    "revision": "bc5418792f2d4d0a5596776522b6b6a206507d96"
+  },
+  "lumma9b": {
+    "name": "Lumma-Fev-9B",
+    "repo": "FrontiersMind/Lumma-fev-9b",
+    "note": "Official 9B Lumma-Fev checkpoint",
+    "revision": "cfca86ba9cfd3696f1e0dffa8e4ba0c385f0670e"
+  },
+  "mojev": {
+    "name": "MoJev",
+    "repo": "MoLeMo-Lab/mojev",
+    "note": "Published 0.85B checkpoint",
+    "revision": "0c8695b6252f4205907433d4e196a94f032e60c3",
+    "source": "https://github.com/MoLeMo-Lab/mojev",
+    "source_revision": "a74d58cd19ec573e83e8e27f9fecd837b8d830fb"
+  },
+  "agentjev": {
+    "name": "AgentJev",
+    "repo": "aimeigaoshou/agent-jev",
+    "note": "Published coding-completion checkpoint; refund detection is out of domain",
+    "revision": "0e2593e6e6c0eade0700712ac13c4389aa7654cc",
+    "source": "https://github.com/malevrigns/agent-jev",
+    "source_revision": "a965ca8ff06ccabc0c796dca5447b55cc2069cee"
+  },
+  "verqen": {
+    "name": "VerQen",
+    "repo": "zorqelis-ai/VerQen",
+    "revision": "09ea51c7773fb10d8432cec3b6d26961fd7a184b",
+    "environment": ".venv-modern",
+    "source": "https://github.com/ZorQelis-AI/verqen",
+    "source_revision": "ce76e187163df2e83ee189d020cca0feedfa5d06",
+    "note": "232M from-scratch encoder; native probability and selected-answer confidence"
+  },
+  "fragment2": {
+    "name": "Fragment-2",
+    "repo": "FrameXlabs/fragment-2",
+    "revision": "3691fff73738d8d31e7e1b8877bb515b792bce57",
+    "environment": ".venv-modern",
+    "note": "36.3M from-scratch encoder; 256-token context; checkpoint-bundled f3.py runtime"
+  },
+  "circuit": {
+    "name": "Circuit-1.7B",
+    "repo": "jbarney/circuit-1.7b",
+    "revision": "bf3b1fdf2602bd68b1d4ce64a3764fd9e90471b0",
+    "environment": ".venv-modern",
+    "source": "https://github.com/Barneyjm/circuit",
+    "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+    "base": {
+      "repo": "Qwen/Qwen3-1.7B-Base",
+      "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+    },
+    "note": "Official pointer head and LoRA adapter; parallel option masking enabled"
+  },
+  "circuit8b": {
+    "name": "Circuit-8B",
+    "repo": "jbarney/circuit-8b",
+    "revision": "f64b4596186aac7bd45c9415cdeb4090fd83a648",
+    "environment": ".venv-modern",
+    "source": "https://github.com/Barneyjm/circuit",
+    "source_revision": "ef47613f6699a4b0deb63ddab1cddcdb4ed7f68a",
+    "base": {
+      "repo": "Qwen/Qwen3-8B-Base",
+      "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+    },
+    "note": "Official pointer head and LoRA adapter; parallel option masking enabled"
+  },
+  "wev": {
+    "name": "WEV-1.7B",
+    "repo": "alanhuangya/wev-1.7b",
+    "revision": "39a7e396ed7e5c1dd7e8455d6f6bab6669f85011",
+    "environment": ".venv-wev",
+    "source": "https://github.com/alanhuangyoo/wev",
+    "source_revision": "a4dc555e152f58f9b818c4a08082188007bd5348",
+    "note": "Official merged pointer checkpoint; native probabilities without vocabulary generation"
+  },
+  "wev4b": {
+    "name": "WEV-4B",
+    "repo": "alanhuangya/wev-4b",
+    "revision": "0c52b5224092355ef34b77381ffd93e80c161195",
+    "environment": ".venv-wev",
+    "source": "https://github.com/alanhuangyoo/wev",
+    "source_revision": "a4dc555e152f58f9b818c4a08082188007bd5348",
+    "note": "Official merged pointer checkpoint; native probabilities without vocabulary generation"
+  },
+  "wev8b": {
+    "name": "WEV-8B",
+    "repo": "alanhuangya/wev-8b",
+    "revision": "813fb695bb37bc254d977710daf4f301819200d3",
+    "environment": ".venv-wev",
+    "source": "https://github.com/alanhuangyoo/wev",
+    "source_revision": "a4dc555e152f58f9b818c4a08082188007bd5348",
+    "note": "Official merged pointer checkpoint; native probabilities without vocabulary generation"
+  },
+  "openthai": {
+    "name": "OpenThai-SystemOne",
+    "repo": "iapp/OpenThai-SystemOne",
+    "revision": "f3709948b5e3cc9606a57e74ba62b7a639d17dd3",
+    "environment": ".venv-modern",
+    "source": "https://github.com/iapp-technology/openthai-systemone",
+    "source_revision": "5d04bcca0c58bd10e7dac2d3d369d8f760bea6cf",
+    "note": "Thai/English 0.8B checkpoint with a 256-slot decision head"
+  },
+  "jev": {
+    "name": "Jev 1.13 (OpenRouter)",
+    "repo": "typesafe/jev-1.13",
+    "backend": "openrouter",
+    "url": "https://openrouter.ai/typesafe/jev-1.13",
+    "note": "Hosted TypeSafe Jev via OpenRouter; OR_TOKEN required. Exact served model is preserved in raw output.",
+    "revision": null
+  },
+  "clef_flash": {
+    "name": "CLEF Flash (Cloudflare)",
+    "repo": "@cf/cloudflare/clef-flash",
+    "backend": "cloudflare",
+    "default_selected": false,
+    "url": "https://developers.cloudflare.com/workers-ai/models/clef-flash/",
+    "note": "9B hosted typed decision model; opt-in only. CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_AUTH_TOKEN required; live access was not verified during integration.",
+    "revision": null
+  },
+  "clef": {
+    "name": "CLEF (Cloudflare)",
+    "repo": "@cf/cloudflare/clef",
+    "backend": "cloudflare",
+    "default_selected": false,
+    "url": "https://developers.cloudflare.com/workers-ai/models/clef/",
+    "note": "27B hosted typed decision model; opt-in only. CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_AUTH_TOKEN required; live access was not verified during integration.",
+    "revision": null
+  }
+}
