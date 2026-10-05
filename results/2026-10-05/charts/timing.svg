@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="910" viewBox="0 0 940 910" role="img" aria-labelledby="title desc">
+<title id="title">Observed call times for local GPU and hosted API models</title>
+<desc id="desc">Mean of 12 timed calls per model. All 19 models share a linear 0 to 600 ms axis, sorted lowest first; exact ties retain captured order. Fragment-2 (local): 13.471740 ms; VerQen (local): 20.903545 ms; Laya (local): 38.642483 ms; Circuit-1.7B (local): 49.668073 ms; Kev-4B (local): 66.840205 ms; AgentJev (local): 73.071958 ms; WEV-1.7B (local): 76.195104 ms; Circuit-8B (local): 102.020309 ms; Kev-9B (local): 108.610094 ms; MoJev (local): 117.241160 ms; OpenThai-SystemOne (local): 120.922462 ms; WEV-4B (local): 139.261778 ms; WEV-8B (local): 210.977451 ms; Lumma-Fev-4B (local): 275.884347 ms; Lumma-Fev-9B (local): 285.405740 ms; Jev 1.13 (OpenRouter) (hosted): 299.735087 ms; Kev-27B (local): 449.118250 ms; CLEF Flash (Cloudflare) (hosted): 474.752590 ms; CLEF (Cloudflare) (hosted): 510.893944 ms. Local GPU calls exclude model loading and include the first call. Hosted API models are orange and prefixed API; their times include network and provider queue.</desc>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#182a3b} .muted{fill:#526272} .value{font-variant-numeric:tabular-nums}</style>
+<rect width="940" height="910" fill="#ffffff"/>
+<text x="24" y="29" font-size="12" text-anchor="start" font-weight="700" fill="#526272" style="fill:#526272">SAVED SCREENING RUN · 05 OCT 2026</text>
+<text x="24" y="61" font-size="26" text-anchor="start" font-weight="700" fill="#182a3b" style="fill:#182a3b">How long did a call take?</text>
+<text x="24" y="88" font-size="16" text-anchor="start" font-weight="400" fill="#526272" style="fill:#526272">One run · Mean of 12 calls per model · Sorted lowest first; exact ties retain captured order</text>
+<rect x="24.000000" y="108.000000" width="12.000000000" height="12.000000" rx="2" fill="#176b8a"/>
+<text x="44" y="119" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Local GPU</text>
+<rect x="161.000000" y="108.000000" width="12.000000000" height="12.000000" rx="2" fill="#ac4b13"/>
+<text x="181" y="119" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Hosted API</text>
+<text x="24" y="155" font-size="12" text-anchor="start" font-weight="700" fill="#526272" style="fill:#526272">MODEL</text>
+<text x="916" y="155" font-size="12" text-anchor="end" font-weight="700" fill="#526272" style="fill:#526272">MEAN CALL (ms)</text>
+<rect x="18.000000" y="169.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="190" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Fragment-2</text>
+<text x="916" y="190" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">13.472</text>
+<rect x="278.000000" y="176.000000" width="10.103804625" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="219" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">VerQen</text>
+<text x="916" y="219" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">20.904</text>
+<rect x="278.000000" y="205.000000" width="15.677658939" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="227.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="248" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Laya</text>
+<text x="916" y="248" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">38.642</text>
+<rect x="278.000000" y="234.000000" width="28.981861935" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="277" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Circuit-1.7B</text>
+<text x="916" y="277" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">49.668</text>
+<rect x="278.000000" y="263.000000" width="37.251054688" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="285.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="306" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Kev-4B</text>
+<text x="916" y="306" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">66.840</text>
+<rect x="278.000000" y="292.000000" width="50.130153626" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="335" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">AgentJev</text>
+<text x="916" y="335" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">73.072</text>
+<rect x="278.000000" y="321.000000" width="54.803968684" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="343.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="364" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">WEV-1.7B</text>
+<text x="916" y="364" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">76.195</text>
+<rect x="278.000000" y="350.000000" width="57.146328123" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="393" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Circuit-8B</text>
+<text x="916" y="393" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">102.020</text>
+<rect x="278.000000" y="379.000000" width="76.515231809" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="401.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="422" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Kev-9B</text>
+<text x="916" y="422" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">108.610</text>
+<rect x="278.000000" y="408.000000" width="81.457570312" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="451" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">MoJev</text>
+<text x="916" y="451" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">117.241</text>
+<rect x="278.000000" y="437.000000" width="87.930869813" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="459.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="480" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">OpenThai-SystemOne</text>
+<text x="916" y="480" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">120.922</text>
+<rect x="278.000000" y="466.000000" width="90.691846441" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="509" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">WEV-4B</text>
+<text x="916" y="509" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">139.262</text>
+<rect x="278.000000" y="495.000000" width="104.446333373" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="517.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="538" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">WEV-8B</text>
+<text x="916" y="538" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">210.977</text>
+<rect x="278.000000" y="524.000000" width="158.233088374" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="567" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Lumma-Fev-4B</text>
+<text x="916" y="567" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">275.884</text>
+<rect x="278.000000" y="553.000000" width="206.913260439" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="575.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="596" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Lumma-Fev-9B</text>
+<text x="916" y="596" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">285.406</text>
+<rect x="278.000000" y="582.000000" width="214.054304628" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="625" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">API · Jev 1.13 (OpenRouter)</text>
+<text x="916" y="625" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">299.735</text>
+<rect x="278.000000" y="611.000000" width="224.801315249" height="17.000000" rx="2" fill="#ac4b13"/>
+<rect x="18.000000" y="633.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="654" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Kev-27B</text>
+<text x="916" y="654" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">449.118</text>
+<rect x="278.000000" y="640.000000" width="336.838687499" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="683" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">API · CLEF Flash (Cloudflare)</text>
+<text x="916" y="683" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">474.753</text>
+<rect x="278.000000" y="669.000000" width="356.064442751" height="17.000000" rx="2" fill="#ac4b13"/>
+<rect x="18.000000" y="691.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="712" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">API · CLEF (Cloudflare)</text>
+<text x="916" y="712" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">510.894</text>
+<rect x="278.000000" y="698.000000" width="383.170458246" height="17.000000" rx="2" fill="#ac4b13"/>
+<line x1="278.0000" y1="167.0000" x2="278.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="278.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">0</text>
+<line x1="353.0000" y1="167.0000" x2="353.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="353.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">100</text>
+<line x1="428.0000" y1="167.0000" x2="428.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="428.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">200</text>
+<line x1="503.0000" y1="167.0000" x2="503.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="503.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">300</text>
+<line x1="578.0000" y1="167.0000" x2="578.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="578.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">400</text>
+<line x1="653.0000" y1="167.0000" x2="653.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="653.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">500</text>
+<line x1="728.0000" y1="167.0000" x2="728.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="728.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">600</text>
+<text x="503.0" y="774" font-size="15" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">Observed elapsed time (ms) · no hardware normalization</text>
+<text x="24" y="810" font-size="15" text-anchor="start" font-weight="400" fill="#526272" style="fill:#526272">Local GPU: model loading excluded · First prediction included · No separate warm-up</text>
+<text x="24" y="839" font-size="15" text-anchor="start" font-weight="400" fill="#526272" style="fill:#526272">Hosted service latency: network and provider queue included · Different execution environment</text>
+<text x="24" y="868" font-size="15" text-anchor="start" font-weight="400" fill="#526272" style="fill:#526272">Load times are in the table. Hardware specifications and repeat timings were not recorded.</text>
+</svg>

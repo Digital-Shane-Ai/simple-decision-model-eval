@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="820" viewBox="0 0 940 820" role="img" aria-labelledby="title desc">
+<title id="title">Accuracy on 12 customer-support messages</title>
+<desc id="desc">All 19 models, sorted by accuracy descending; exact ties retain captured order. API models are orange and prefixed API. Accuracy = correct / 12 answered labeled cases. 100% coverage and no errors. Kev-27B: 12/12 (100.0%); Lumma-Fev-4B: 12/12 (100.0%); Lumma-Fev-9B: 12/12 (100.0%); Circuit-1.7B: 12/12 (100.0%); Circuit-8B: 12/12 (100.0%); WEV-4B: 12/12 (100.0%); WEV-8B: 12/12 (100.0%); OpenThai-SystemOne: 12/12 (100.0%); Jev 1.13 (OpenRouter): 12/12 (100.0%); CLEF Flash (Cloudflare): 12/12 (100.0%); CLEF (Cloudflare): 12/12 (100.0%); Kev-4B: 11/12 (91.7%); Kev-9B: 11/12 (91.7%); MoJev: 11/12 (91.7%); AgentJev: 11/12 (91.7%); WEV-1.7B: 11/12 (91.7%); Laya: 10/12 (83.3%); VerQen: 8/12 (66.7%); Fragment-2: 6/12 (50.0%)</desc>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#182a3b} .muted{fill:#526272} .value{font-variant-numeric:tabular-nums}</style>
+<rect width="940" height="820" fill="#ffffff"/>
+<text x="24" y="29" font-size="12" text-anchor="start" font-weight="700" fill="#526272" style="fill:#526272">SAVED SCREENING RUN · 05 OCT 2026</text>
+<text x="24" y="61" font-size="26" text-anchor="start" font-weight="700" fill="#182a3b" style="fill:#182a3b">Which models answered correctly?</text>
+<text x="24" y="88" font-size="16" text-anchor="start" font-weight="400" fill="#526272" style="fill:#526272">11 of 19 models scored 12/12 · One answer changes accuracy by 8.33 points</text>
+<rect x="24.000000" y="108.000000" width="12.000000000" height="12.000000" rx="2" fill="#176b8a"/>
+<text x="44" y="119" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Local GPU</text>
+<rect x="161.000000" y="108.000000" width="12.000000000" height="12.000000" rx="2" fill="#ac4b13"/>
+<text x="181" y="119" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Hosted API</text>
+<text x="24" y="155" font-size="12" text-anchor="start" font-weight="700" fill="#526272" style="fill:#526272">MODEL</text>
+<text x="916" y="155" font-size="12" text-anchor="end" font-weight="700" fill="#526272" style="fill:#526272">ACCURACY / CORRECT</text>
+<rect x="18.000000" y="169.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="190" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Kev-27B</text>
+<text x="916" y="190" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="176.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="219" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Lumma-Fev-4B</text>
+<text x="916" y="219" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="205.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="227.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="248" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Lumma-Fev-9B</text>
+<text x="916" y="248" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="234.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="277" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Circuit-1.7B</text>
+<text x="916" y="277" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="263.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="285.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="306" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Circuit-8B</text>
+<text x="916" y="306" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="292.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="335" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">WEV-4B</text>
+<text x="916" y="335" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="321.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="343.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="364" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">WEV-8B</text>
+<text x="916" y="364" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="350.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="393" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">OpenThai-SystemOne</text>
+<text x="916" y="393" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="379.000000" width="450.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="401.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="422" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">API · Jev 1.13 (OpenRouter)</text>
+<text x="916" y="422" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="408.000000" width="450.000000000" height="17.000000" rx="2" fill="#ac4b13"/>
+<text x="24" y="451" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">API · CLEF Flash (Cloudflare)</text>
+<text x="916" y="451" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="437.000000" width="450.000000000" height="17.000000" rx="2" fill="#ac4b13"/>
+<rect x="18.000000" y="459.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="480" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">API · CLEF (Cloudflare)</text>
+<text x="916" y="480" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">100.0%  (12/12)</text>
+<rect x="278.000000" y="466.000000" width="450.000000000" height="17.000000" rx="2" fill="#ac4b13"/>
+<text x="24" y="509" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Kev-4B</text>
+<text x="916" y="509" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">91.7%  (11/12)</text>
+<rect x="278.000000" y="495.000000" width="412.500000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="517.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="538" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Kev-9B</text>
+<text x="916" y="538" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">91.7%  (11/12)</text>
+<rect x="278.000000" y="524.000000" width="412.500000000" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="567" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">MoJev</text>
+<text x="916" y="567" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">91.7%  (11/12)</text>
+<rect x="278.000000" y="553.000000" width="412.500000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="575.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="596" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">AgentJev</text>
+<text x="916" y="596" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">91.7%  (11/12)</text>
+<rect x="278.000000" y="582.000000" width="412.500000000" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="625" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">WEV-1.7B</text>
+<text x="916" y="625" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">91.7%  (11/12)</text>
+<rect x="278.000000" y="611.000000" width="412.500000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="633.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="654" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Laya</text>
+<text x="916" y="654" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">83.3%  (10/12)</text>
+<rect x="278.000000" y="640.000000" width="375.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<text x="24" y="683" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">VerQen</text>
+<text x="916" y="683" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">66.7%  (8/12)</text>
+<rect x="278.000000" y="669.000000" width="300.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<rect x="18.000000" y="691.000000" width="904.000000000" height="29.000000" rx="0" fill="#f4f7fa"/>
+<text x="24" y="712" font-size="15" text-anchor="start" font-weight="400" fill="#182a3b" style="fill:#182a3b">Fragment-2</text>
+<text x="916" y="712" font-size="16" text-anchor="end" font-weight="600" fill="#182a3b" style="fill:#182a3b">50.0%  (6/12)</text>
+<rect x="278.000000" y="698.000000" width="225.000000000" height="17.000000" rx="2" fill="#176b8a"/>
+<line x1="278.0000" y1="167.0000" x2="278.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="278.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">0%</text>
+<line x1="390.5000" y1="167.0000" x2="390.5000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="390.5" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">25%</text>
+<line x1="503.0000" y1="167.0000" x2="503.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="503.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">50%</text>
+<line x1="615.5000" y1="167.0000" x2="615.5000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="615.5" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">75%</text>
+<line x1="728.0000" y1="167.0000" x2="728.0000" y2="721.0000" stroke="#d9e2e9" stroke-width="1"/>
+<text x="728.0" y="746" font-size="14" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">100%</text>
+<text x="503.0" y="774" font-size="15" text-anchor="middle" font-weight="400" fill="#526272" style="fill:#526272">Accuracy · highest first · ties retain captured order</text>
+<line x1="503.0000" y1="167.0000" x2="503.0000" y2="721.0000" stroke="#526272" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="24" y="794" font-size="15" text-anchor="start" font-weight="400" fill="#526272" style="fill:#526272">Dashed line: always choose refund = 6/12 (50%) · Full 0–100% scale</text>
+</svg>

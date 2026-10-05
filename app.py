@@ -10,13 +10,15 @@ import pandas as pd
 import streamlit as st
 
 from compare import (MODELS, QUESTION, default_model_keys, ordered_model_keys, ordered_results,
-                     report, run_model, summarize, validate_cases, validate_questions, display_answer)
+                     report, run_model, summarize, validate_cases, validate_questions, display_answer,
+                     add_log_loss, log_loss_fields, display_log_loss)
 from model_config import model_eligibility, print_startup_diagnostics
 from markdown_copy import cases_table, make_copy_table_button
 from ui_state import (reconcile_questions, reconcile_labels,
                       context_rows, rows_to_cases, preset_draft, draft_questions, DRAFT_FIELDS)
 from results_charts import (score_data, score_spec, brier_data, brier_spec,
-                            probability_data, probability_spec, timing_data, timing_spec)
+                            probability_data, probability_spec, timing_data, timing_spec,
+                            log_loss_data, log_loss_spec)
 
 ROOT = Path(__file__).resolve().parent
 # Raw Streamlit launches retain gating; the supported serve.py launcher prints
@@ -113,19 +115,26 @@ def results_table(rows):
         "Selected probability": r.get("selected_probability"), "Returned confidence": r.get("returned_confidence"),
         "Returned answer confidence": r.get("returned_answer_confidence"),
         "Expected": display_answer(r["expected"]),
+        "Log loss (nats)": display_log_loss(loss["log_loss"], loss["log_loss_status"]),
+        "Log loss status": loss["log_loss_status"], "Zero-probability truths": loss["log_loss_zero_probability_count"],
         "Correct": r.get("correct"), "Context inference (s)": r.get("inference_seconds"),
         "Load (s)": r.get("load_seconds"), "Device": r.get("device"),
         "Execution": r.get("execution", "local"), "Context API cost (USD)": r.get("cost_usd"),
-    } for r in ordered_results(rows)])
+    } for r in ordered_results(rows) for loss in [log_loss_fields([r])]])
 
 
 def summary_table(rows):
-    return pd.DataFrame(summarize(rows)).rename(columns={
+    summaries = summarize(rows)
+    frame = pd.DataFrame(summaries).rename(columns={
         "model": "Model", "cases": "Answer pairs", "contexts": "Contexts", "answered": "Answered", "errors": "Errors",
         "labelled": "Labeled", "correct": "Correct", "accuracy_on_answered": "Accuracy (answered)",
         "correct_over_labelled": "Correct / all labeled", "coverage": "Coverage", "brier_score": "Binary Brier", "choice_brier_score": "Choice Brier",
         "mean_inference_seconds": "Mean context inference (s)", "load_seconds": "Load (s)",
+        "log_loss": "Log loss (nats)", "log_loss_status": "Log loss status",
+        "log_loss_scored": "Log loss scored", "log_loss_zero_probability_count": "Zero-probability truths",
     })
+    frame["Log loss (nats)"] = [display_log_loss(s["log_loss"], s["log_loss_status"]) for s in summaries]
+    return frame
 
 
 def show_score_chart(rows, key, view):
@@ -143,6 +152,14 @@ def show_score_chart(rows, key, view):
                 st.caption('Scored on answered labeled pairs. Teal: local; orange / API prefix: hosted API. Exact values are in the table below.')
         if not available:
             st.info('Brier scores need successful answers with expected labels and probabilities.')
+    elif view == 'Log loss':
+        values = log_loss_data(rows)
+        if values:
+            st.caption('Log loss · nats · lower is better; finite scores sorted ascending, then infinity; ties retain registry order')
+            st.vega_lite_chart(log_loss_spec(values), width='stretch', key=f'{key}_log_loss')
+            st.caption('Mean −ln P(expected) on valid answered labeled pairs. Exact zero truth probabilities give ∞, with their count shown; infinite scores have no finite bar. Teal: local; orange / API prefix: hosted API. Missing scores are unavailable. One-hot perfect scores do not establish calibration.')
+        else:
+            st.info('Log loss needs successful answers with expected labels and valid probabilities.')
     else:
         values = score_data(rows)
         if values:
@@ -302,11 +319,11 @@ if "comparison" not in st.session_state:
     st.subheader("Results")
     st.caption("Run a comparison to see model scores and inspect individual answers.")
 else:
-    comparison = st.session_state.comparison
+    comparison = add_log_loss(st.session_state.comparison)
     saved_questions = comparison.get("questions") or {"refund_requested": {"type": "noul", "instructions": comparison.get("question", QUESTION)}}
     heading, json_col, csv_col = st.columns([5, 1, 1], vertical_alignment="bottom")
     heading.subheader("Results")
-    json_col.download_button("Export JSON", json.dumps(comparison, indent=2), file_name="decision-comparison.json", mime="application/json", width="stretch")
+    json_col.download_button("Export JSON", json.dumps(comparison, indent=2, allow_nan=False), file_name="decision-comparison.json", mime="application/json", width="stretch")
     csv_col.download_button("Export CSV", results_table(comparison["results"]).to_csv(index=False), file_name="decision-results.csv", mime="text/csv", width="stretch")
     changed = True
     try:
@@ -323,8 +340,9 @@ else:
     )
     summary = summary_table(comparison["results"])
     score_columns = (["Binary Brier"] if any(q["type"] == "noul" for q in saved_questions.values()) else []) + (["Choice Brier"] if any(q["type"] == "choice" for q in saved_questions.values()) else [])
+    score_columns += ["Log loss (nats)", "Zero-probability truths"]
     with overview:
-        chart_view = st.radio('Overview chart', ['Accuracy & coverage', 'Brier scores'],
+        chart_view = st.radio('Overview chart', ['Accuracy & coverage', 'Brier scores', 'Log loss'],
                               horizontal=True, key='overview_chart')
         show_score_chart(comparison['results'], 'model_scores', chart_view)
         summary_display = summary[["Model", "Answer pairs", "Answered", "Errors", "Accuracy (answered)", "Coverage", *score_columns]]
@@ -334,7 +352,7 @@ else:
         })
         copy_table_button(summary_display, "Copy summary as Markdown", "copy_summary")
         if not any(r["expected"] is not None for r in comparison["results"]):
-            st.caption("This run has no expected answers. Accuracy and Brier scores remain blank.")
+            st.caption("This run has no expected answers. Accuracy and Brier scores remain blank; log loss is unavailable.")
         if len(saved_questions) > 1:
             qid = st.selectbox("Scores for question", list(saved_questions), format_func=lambda q: saved_questions[q]["instructions"])
             question_rows = [r for r in comparison["results"] if r.get("question_id", "refund_requested") == qid]
@@ -374,7 +392,7 @@ else:
                 inspected[column] = [(row.get("probabilities") or {}).get(option) for row in ordered_results(selected)]
         else:
             probability_columns = ["P(yes)", "P(no)"]
-        compact = inspected[["Model", "Status", "Decision", *probability_columns, "Selected probability", "Correct"]].rename(columns={"Selected probability": "P(decision)"})
+        compact = inspected[["Model", "Status", "Decision", *probability_columns, "Selected probability", "Correct", "Log loss (nats)"]].rename(columns={"Selected probability": "P(decision)"})
         st.dataframe(compact, hide_index=True, width="stretch", column_config={
             k: st.column_config.NumberColumn(format="percent") for k in [*probability_columns, "P(decision)"]
         })
@@ -412,6 +430,7 @@ else:
 with st.expander("Scoring, model execution & input table"):
     st.write("Binary Yes means P(yes) ≥ 50%. Multiple choice selects the largest probability; ties retain the native selection. P(decision) is the selected answer’s probability. Native confidence fields retain each model’s definition.")
     st.write("Accuracy scores answered labeled context/question pairs. Coverage and correct / all labeled pairs expose failures. Binary Brier is mean (P(yes) − label)². Choice Brier is the mean sum of squared errors across all choices (0–2); lower is better. The two scales stay separate. Labels stay local.")
+    st.write("Log loss is mean −ln P(expected), in nats, on valid answered labeled pairs; lower is better. P(expected)=0 gives infinity, without clipping. JSON stores a null value with an explicit infinite or unavailable status, scored-pair count, and zero-probability count. Failures remain in coverage and correct / all labeled. Genuine one-hot outputs are preserved; a perfect one-hot score alone does not establish calibrated confidence.")
     st.write("Every context carries all questions in one call. Long contexts or many questions can exceed model input limits. Local models run sequentially; Kev uses MLX on Metal and other local models use PyTorch MPS. Jev uses OpenRouter; CLEF uses Cloudflare Workers AI.")
     table = cases_table(pending_cases, questions)
     st.dataframe(table, hide_index=True, width="stretch")

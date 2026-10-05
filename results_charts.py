@@ -3,7 +3,7 @@
 import math
 from numbers import Real
 
-from compare import MODELS, display_answer, ordered_model_keys, ordered_results, summarize
+from compare import MODELS, display_answer, display_log_loss, ordered_model_keys, ordered_results, summarize
 from model_config import is_hosted
 
 
@@ -83,6 +83,21 @@ def brier_data(rows, kind):
     values = [{**identities[model['model']], 'Value': model[field]}
               for model in summarize(rows) if finite_number(model[field], maximum=1 if kind == 'noul' else 2)]
     return sorted(values, key=lambda value: value['Value'])
+
+
+def log_loss_data(rows):
+    """Finite means sort ascending; infinite means remain explicit and sort last."""
+    identities = {r['name']: chart_identity(r) for r in ordered_results(rows)}
+    values = [{**identities[model['model']], 'Value': model['log_loss'],
+               'Status': model['log_loss_status'],
+               'Label': display_log_loss(model['log_loss'], model['log_loss_status']),
+               'Scored pairs': model['log_loss_scored'],
+               'Zero-probability truths': model['log_loss_zero_probability_count']}
+              for model in summarize(rows) if model['log_loss_status'] != 'unavailable']
+    for value in values:
+        if value['Status'] == 'infinite':
+            value['Label'] += f" · zero-probability truths: {value['Zero-probability truths']}"
+    return sorted(values, key=lambda value: (value['Status'] == 'infinite', value['Value'] or 0))
 
 
 def timing_data(rows):
@@ -179,6 +194,29 @@ def brier_spec(values, kind):
         'tooltip': [{'field': 'Model'}, {'field': 'Runtime', 'title': 'Execution'},
                     {'field': 'Value', 'title': 'Brier', 'format': '.8f'}],
     })
+    return spec
+
+
+def log_loss_spec(values):
+    spec = base_spec(values, 'Mean log loss in nats; exact zero truth probabilities remain infinite.')
+    maximum = max((v['Value'] for v in values if v['Status'] == 'finite'), default=0)
+    spec['encoding'].update({
+        'x': {'field': 'Value', 'type': 'quantitative', 'scale': {'domain': [0, maximum * 1.25 if maximum else 1]},
+              'axis': {'title': 'Mean log loss (nats) · lower is better'}},
+        'color': runtime_color(),
+        'tooltip': [{'field': 'Model'}, {'field': 'Runtime', 'title': 'Execution'},
+                    {'field': 'Label', 'title': 'Log loss (nats)'},
+                    {'field': 'Scored pairs'}, {'field': 'Zero-probability truths'}],
+    })
+    finite = [{'filter': "datum.Status === 'finite'"}]
+    spec['layer'] = [
+        {'transform': finite, 'mark': {'type': 'bar', 'height': 17, 'cornerRadiusEnd': 3}},
+        {'transform': finite, 'mark': {'type': 'text', 'align': 'left', 'dx': 6, 'fontSize': 11},
+         'encoding': {'text': {'field': 'Label'}}},
+        {'transform': [{'filter': "datum.Status === 'infinite'"}],
+         'mark': {'type': 'text', 'align': 'right', 'dx': -4, 'fontSize': 11},
+         'encoding': {'x': {'value': {'expr': 'width'}}, 'text': {'field': 'Label'}}},
+    ]
     return spec
 
 

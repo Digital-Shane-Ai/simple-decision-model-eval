@@ -100,6 +100,64 @@ def display_answer(value):
     return "Unknown" if value is None else ("Yes" if value else "No") if type(value) is bool else str(value)
 
 
+LOG_LOSS_DESCRIPTION = (
+    "mean -ln P(expected) in nats over valid labeled successes; "
+    "zero truth probability is infinite (null value with explicit status and count)"
+)
+
+
+def log_loss_fields(rows):
+    """JSON-safe log loss, derived from normalized probabilities, including legacy rows.
+
+    Null values mean either infinite or unavailable, distinguished by status.
+    Exact zero probabilities are counted, never clipped. Failures are not scored.
+    """
+    losses, zeros = [], 0
+    for row in rows:
+        expected = row.get("expected")
+        if row.get("status") != "ok" or expected is None:
+            continue
+        kind = row.get("question_type", "noul")
+        if kind == "choice" and isinstance(expected, str):
+            probabilities = row.get("probabilities")
+            probability = probabilities.get(expected) if isinstance(probabilities, dict) else None
+        elif kind == "noul" and type(expected) is bool:
+            probability = row.get("probability_yes")
+        else:
+            continue
+        if (isinstance(probability, bool) or not isinstance(probability, (int, float))
+                or not math.isfinite(probability) or not 0 <= probability <= 1):
+            continue
+        if kind == "noul" and not expected:
+            probability = 1 - probability
+        if probability == 0:
+            zeros += 1
+        else:
+            losses.append(0.0 if probability == 1 else -math.log(probability))
+    count = len(losses) + zeros
+    status = "infinite" if zeros else "finite" if count else "unavailable"
+    return {"log_loss": statistics.mean(losses) if status == "finite" else None,
+            "log_loss_status": status, "log_loss_scored": count,
+            "log_loss_zero_probability_count": zeros}
+
+
+def display_log_loss(value, status):
+    return "∞" if status == "infinite" else f"{value:.6g}" if status == "finite" else "Unavailable"
+
+
+def add_log_loss(comparison):
+    """Enrich a new or saved export without changing its inputs or timestamp."""
+    data = deepcopy(comparison)
+    data["results"] = [{**row, **log_loss_fields([row])} for row in data["results"]]
+    data["summary"] = summarize(data["results"])
+    data["question_summaries"] = {
+        qid: summarize([r for r in data["results"] if r.get("question_id", "refund_requested") == qid])
+        for qid in data.get("questions") or {"refund_requested": None}
+    }
+    data.setdefault("scoring", {})["log_loss"] = LOG_LOSS_DESCRIPTION
+    return data
+
+
 def normalize_result(raw, question_id="refund_requested", question=None):
     answer = raw["answers"][question_id]
     if question is not None and question["type"] == "choice":
@@ -216,6 +274,7 @@ def run_model(key, cases, device="auto", timeout=1800, questions=None):
                         row.update(status="error", error=f"Invalid model output for {qid}: {exc}")
             if row["status"] == "error":
                 row["diagnostics"] = diagnostic
+            row.update(log_loss_fields([row]))
             rows.append(row)
     return rows
 
@@ -255,6 +314,7 @@ def summarize(rows):
             "coverage": len(successful) / len(group),
             "brier_score": statistics.mean((r["probability_yes"] - int(r["expected"])) ** 2 for r in binary_scored) if binary_scored else None,
             "choice_brier_score": statistics.mean(sum((p - int(k == r["expected"])) ** 2 for k, p in r["probabilities"].items()) for r in choice_scored) if choice_scored else None,
+            **log_loss_fields(group),
             "mean_inference_seconds": statistics.mean(timings.values()) if timings else None,
             "load_seconds": group[0].get("load_seconds"),
         })
@@ -265,13 +325,11 @@ def report(cases, keys, rows, questions=None):
     questions = validate_questions(questions)
     cases = validate_cases(cases, questions)
     keys, rows = ordered_model_keys(keys), ordered_results(rows)
-    return deepcopy({"schema_version": 3, "created_at": datetime.now(timezone.utc).isoformat(),
+    return add_log_loss({"schema_version": 3, "created_at": datetime.now(timezone.utc).isoformat(),
                      "question": next(iter(questions.values()))["instructions"] if len(questions) == 1 else None,
                      "questions": questions, "threshold": 0.5,
                      "scoring": {"noul": "mean (P(yes) - label)^2", "choice": "mean sum over choices (probability - one_hot_label)^2"}, "cases": cases,
-                     "models": {k: MODELS[k] for k in keys}, "summary": summarize(rows),
-                     "question_summaries": {qid: summarize([r for r in rows if r.get("question_id", "refund_requested") == qid])
-                                            for qid in questions}, "results": rows})
+                     "models": {k: MODELS[k] for k in keys}, "results": rows})
 
 
 def main():
